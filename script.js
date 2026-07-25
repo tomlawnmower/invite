@@ -277,20 +277,24 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // When video ends automatically, scroll to Page 2
-        envelopeVideo.addEventListener('ended', function () {
+        const unlockAndScroll = function () {
             videoHasEnded = true;
+            if (page1) {
+                page1.classList.remove('video-locked');
+            }
             if (page2) {
                 page2.scrollIntoView({ behavior: 'smooth' });
             }
-        });
+        };
+
+        // When video ends automatically, scroll to Page 2
+        envelopeVideo.addEventListener('ended', unlockAndScroll);
 
         // 3. Scroll Input Listeners (Wheel & Touch)
         function handleWheelScrub(e) {
             if (!page1 || !envelopeVideo || !envelopeVideo.duration) return;
 
             const rect = page1.getBoundingClientRect();
-            // Check if Page 1 is currently active in view
             const isPage1Active = rect.top >= -120 && rect.top <= 120;
             if (!isPage1Active) return;
 
@@ -298,27 +302,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (e.deltaY > 0) { // Scrolling DOWN
                 if (!videoHasEnded && targetTime < duration - 0.05) {
-                    e.preventDefault();
+                    if (e.cancelable) e.preventDefault();
                     envelopeVideo.pause();
 
-                    // 500px scroll delta = full video duration
-                    const deltaRatio = e.deltaY / 500;
+                    const deltaRatio = e.deltaY / 450;
                     targetTime = Math.min(duration, targetTime + deltaRatio * duration);
 
                     if (targetTime >= duration - 0.05) {
-                        videoHasEnded = true;
-                        if (page2) {
-                            page2.scrollIntoView({ behavior: 'smooth' });
-                        }
+                        unlockAndScroll();
                     }
                 }
             } else if (e.deltaY < 0) { // Scrolling UP
                 if (targetTime > 0.05 && window.scrollY <= 20) {
-                    e.preventDefault();
+                    if (e.cancelable) e.preventDefault();
                     videoHasEnded = false;
+                    if (page1) page1.classList.add('video-locked');
                     envelopeVideo.pause();
 
-                    const deltaRatio = Math.abs(e.deltaY) / 500;
+                    const deltaRatio = Math.abs(e.deltaY) / 450;
                     targetTime = Math.max(0, targetTime - deltaRatio * duration);
                 }
             }
@@ -350,31 +351,45 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (!videoHasEnded && targetTime < duration - 0.05) {
                         if (e.cancelable) e.preventDefault();
                         envelopeVideo.pause();
-                        const deltaRatio = deltaY / 400;
+                        const deltaRatio = deltaY / 300;
                         targetTime = Math.min(duration, targetTime + deltaRatio * duration);
 
                         if (targetTime >= duration - 0.05) {
-                            videoHasEnded = true;
-                            if (page2) {
-                                page2.scrollIntoView({ behavior: 'smooth' });
-                            }
+                            unlockAndScroll();
                         }
                     }
                 } else if (deltaY < 0) { // Swipe DOWN (Scroll UP)
                     if (targetTime > 0.05 && window.scrollY <= 20) {
                         if (e.cancelable) e.preventDefault();
                         videoHasEnded = false;
+                        if (page1) page1.classList.add('video-locked');
                         envelopeVideo.pause();
-                        const deltaRatio = Math.abs(deltaY) / 400;
+                        const deltaRatio = Math.abs(deltaY) / 300;
                         targetTime = Math.max(0, targetTime - deltaRatio * duration);
                     }
                 }
             }
         }
 
+        // Attach listeners directly to page1 and window with passive: false
+        if (page1) {
+            page1.addEventListener('touchstart', handleTouchStart, { passive: false });
+            page1.addEventListener('touchmove', handleTouchMove, { passive: false });
+        }
         window.addEventListener('wheel', handleWheelScrub, { passive: false });
-        window.addEventListener('touchstart', handleTouchStart, { passive: true });
-        window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+        // Scroll lock listener fallback to keep view locked on top of page1 while scrubbing
+        window.addEventListener('scroll', function () {
+            if (!page1) return;
+            const rect = page1.getBoundingClientRect();
+            const isAtPage1 = rect.top >= -50 && rect.top <= 50;
+
+            if (isAtPage1 && !videoHasEnded && targetTime < envelopeVideo.duration - 0.05) {
+                if (window.scrollY > 5) {
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                }
+            }
+        });
     }
 
     // 4. Intersection Observer for Navigation Dots
