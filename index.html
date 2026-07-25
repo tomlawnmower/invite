@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alice & Bob's Wedding | November 11, 2026</title>
+    <meta name="description" content="Official wedding invitation for Alice & Bob. Join us on November 11, 2026. RSVP, venue details, dress code, and FAQs.">
+    
+    <!-- Google Fonts: Playfair Display, Noto Serif TC & Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- FontAwesome for Paw & Wedding Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Floating Language Switcher Bar -->
+    <div class="language-switcher shadow-sm" aria-label="Language Selector">
+        <button type="button" id="btnEn" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <span class="lang-divider">|</span>
+        <button type="button" id="btnZh" class="lang-btn" onclick="setLanguage('zh-tw')">繁體中文</button>
+    </div>
+
+    <!-- Floating Navigation Dots -->
+    <nav class="nav-dots" id="navDots" aria-label="Page Navigation">
+        <a href="#page1" class="dot active" data-title="Envelope" data-i18n-title="nav_envelope" title="Page 1: Envelope"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page2" class="dot" data-title="Save The Date" data-i18n-title="nav_std" title="Page 2: Save The Date"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page3" class="dot" data-title="Invitation" data-i18n-title="nav_invitation" title="Page 3: Invitation"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page4" class="dot" data-title="Venue & Time" data-i18n-title="nav_venue" title="Page 4: Venue & Time"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page5" class="dot" data-title="Dress Code" data-i18n-title="nav_dress" title="Page 5: Dress Code"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page6" class="dot" data-title="FAQ" data-i18n-title="nav_faq" title="Page 6: FAQ"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page7" class="dot" data-title="RSVP" data-i18n-title="nav_rsvp" title="Page 7: RSVP"><i class="fa-solid fa-paw dot-paw"></i></a>
+    </nav>
+
+    <div class="pages-container">
+
+        <!-- Page 1: Envelope Opening Video -->
+        <section id="page1" class="page-section section-envelope">
+            <div class="content-wrapper text-center">
+                <!-- Video Container -->
+				This is a placeholder video.
+                <div class="video-placeholder-card shadow-lg my-4 position-relative">
+                    <video id="envelopeVideo" preload="auto" class="w-100 rounded" style="cursor: pointer;">
+                        <source src="video/intro.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <div class="scroll-hint mt-4">
+                    <p class="mb-1 text-uppercase tracking-wide small font-weight-bold text-lightblue">
+                        <i class="fa-solid fa-paw mr-1"></i> <span data-i18n="p1_scroll">Scroll Down to Explore</span> <i class="fa-solid fa-paw ml-1"></i>
+                    </p>
+                    <i class="fa-solid fa-chevron-down bounce"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: Cover / Save The Date -->
+        <section id="page2" class="page-section section-save-the-date">
+            <div class="container text-center">
+                <div class="paw-divider">
+                    <i class="fa-solid fa-paw"></i>
+                    <i class="fa-solid fa-paw"></i>
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <h3 class="section-subtitle" data-i18n="p2_subtitle">Save The Date</h3>
+                <h1 class="wedding-title" data-i18n="p2_title">Alice &amp; Bob's Wedding</h1>
+                <p class="date-badge"><i class="fa-solid fa-paw mr-2"></i><span data-i18n="p2_date">November 11, 2026</span></p>
+                
+                <div class="photo-frame-wrapper mx-auto mt-4 mb-3">
+                    <img src="images/wedding.jpg" alt="Alice & Bob's Wedding Photo" class="img-fluid rounded photo-frame shadow-lg">
+                </div>
+                <p class="location-brief text-muted font-weight-bold"><i class="fa-solid fa-location-dot mr-1"></i> <span data-i18n="p2_location">San Francisco, California</span></p>
+            </div>
+        </section>
+
+        <!-- Page 3: Elegant Invitation Prose -->
+        <section id="page3" class="page-section section-invitation">
+            <div class="container text-center">
+                <div class="glass-card invitation-card p-4 p-md-5 mx-auto">
+                    <div class="monogram mb-3">
+                        A <i class="fa-solid fa-paw text-lightblue mx-2"></i> B
+                    </div>
+                    <div class="paw-divider mb-4">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <h2 class="section-subtitle mb-4" data-i18n="p3_subtitle">Together With Their Families</h2>
+                    <blockquote class="invitation-prose" data-i18n="p3_prose">
+                        "With joyful hearts and endless love, we request the honor of your presence to celebrate the union of our lives and hearts. Join us as we exchange our vows and begin our journey together as husband and wife."
+                    </blockquote>
+                    <div class="paw-divider mt-4">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <p class="font-italic text-lightblue mt-3 font-weight-bold" data-i18n="p3_quote_end">We look forward to sharing this magical day with you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 4: Venue & Schedule Details -->
+        <section id="page4" class="page-section section-venue">
+            <div class="container">
+                <h2 class="section-title text-center mb-2" data-i18n="p4_title">Venue &amp; Event Details</h2>
+                <div class="paw-divider text-center mb-4">
+                    <i class="fa-solid fa-paw"></i> <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <div class="glass-card p-4 h-100">
+                            <div class="detail-icon"><i class="fa-solid fa-clock"></i></div>
+                            <h4 class="card-title text-center text-navy font-weight-bold" data-i18n="p4_schedule_title">Date &amp; Schedule</h4>
+                            <hr class="blue-hr">
+                            <p class="mb-2"><i class="fa-solid fa-paw text-lightblue mr-2"></i><strong data-i18n="p4_date_lbl">Date:</strong> <span data-i18n="p4_date_val">Wednesday, November 11, 2026</span></p>
+                            <p class="mb-2"><i class="fa-solid fa-paw text-lightblue mr-2"></i><strong data-i18n="p4_arrival_lbl">Guest Arrival:</strong> <span data-i18n="p4_arrival_val">Please arrive at 4:00 PM</span></p>
+                            <p class="mb-2"><i class="fa-solid fa-paw text-lightblue mr-2"></i><strong data-i18n="p4_ceremony_lbl">Ceremony Begins:</strong> <span data-i18n="p4_ceremony_val">4:30 PM</span></p>
+                            <p class="mb-0"><i class="fa-solid fa-paw text-lightblue mr-2"></i><strong data-i18n="p4_reception_lbl">Reception &amp; Dinner:</strong> <span data-i18n="p4_reception_val">6:00 PM onwards</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="glass-card p-4 h-100">
+                            <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <h4 class="card-title text-center text-navy font-weight-bold" data-i18n="p4_location_title">Location &amp; Parking</h4>
+                            <hr class="blue-hr">
+                            <p class="mb-2"><i class="fa-solid fa-paw text-lightblue mr-2"></i><strong data-i18n="p4_venue_lbl">Venue:</strong> <span data-i18n="p4_venue_val">Grand Estate Manor</span></p>
+                            <p class="mb-2"><i class="fa-solid fa-paw text-lightblue mr-2"></i><strong data-i18n="p4_addr_lbl">Address:</strong> <span data-i18n="p4_addr_val">123 Main Street</span></p>
+                            <p class="mb-3"><i class="fa-solid fa-paw text-lightblue mr-2"></i><strong data-i18n="p4_parking_lbl">Parking Info:</strong> <span data-i18n="p4_parking_val">Free parking available on-site.</span></p>
+                            <a href="#" id="mapBtn" class="btn btn-outline-blue btn-block">
+                                <i class="fa-solid fa-map-location-dot mr-2"></i> <span data-i18n="p4_map_btn">Google Maps Link (TBD)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 5: Dress Code -->
+        <section id="page5" class="page-section section-dresscode">
+            <div class="container text-center">
+                <div class="glass-card p-4 p-md-5 mx-auto max-width-700">
+                    <div class="detail-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3 class="section-subtitle" data-i18n="p5_subtitle">Dress Code</h3>
+                    <h2 class="section-title text-navy mb-3" data-i18n="p5_theme">Black Tie</h2>
+                    <div class="paw-divider mb-4">
+                        <i class="fa-solid fa-paw"></i>
+                        <i class="fa-solid fa-paw"></i>
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <p class="lead-text text-dark font-weight-bold" data-i18n="p5_lead">
+                        We ask that our guests dress in black tie attire to join us in making the evening unforgettable.
+                    </p>
+                    <div class="row mt-4 text-left">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="attire-box p-3 rounded">
+                                <h5 class="text-navy font-weight-bold"><span data-i18n="p5_ladies_title">Ladies</span></h5>
+                                <p class="small mb-0 text-muted" data-i18n="p5_ladies_desc">Floor-length evening gowns or formal dresses.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="attire-box p-3 rounded">
+                                <h5 class="text-navy font-weight-bold"><span data-i18n="p5_gentlemen_title">Gentlemen</span></h5>
+                                <p class="small mb-0 text-muted" data-i18n="p5_gentlemen_desc">Tuxedos or formal dark suits with black bow ties.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 6: FAQ -->
+        <section id="page6" class="page-section section-faq">
+            <div class="container">
+                <h2 class="section-title text-center mb-2" data-i18n="p6_title">Frequently Asked Questions</h2>
+                <div class="paw-divider text-center mb-4">
+                    <i class="fa-solid fa-paw"></i> <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="accordion" id="weddingFaq">
+
+                            <div class="card faq-card mb-3">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left text-navy font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fa-solid fa-paw text-lightblue mr-2"></i> <span data-i18n="p6_q1">Q: Can I bring a plus 1?</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#weddingFaq">
+                                    <div class="card-body text-dark" data-i18n="p6_a1">
+                                        A: Yes, you can bring a plus 1! Please use the RSVP form on Page 7 to indicate the number of guests.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card faq-card mb-3">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left text-navy font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fa-solid fa-paw text-lightblue mr-2"></i> <span data-i18n="p6_q2">Q: What time should I arrive?</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#weddingFaq">
+                                    <div class="card-body text-dark" data-i18n="p6_a2">
+                                        A: Please plan to arrive by 4:00 PM so everyone is seated before the ceremony starts at 4:30 PM.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card faq-card mb-3">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left text-navy font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <i class="fa-solid fa-paw text-lightblue mr-2"></i> <span data-i18n="p6_q3">Q: Is there free parking?</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#weddingFaq">
+                                    <div class="card-body text-dark" data-i18n="p6_a3">
+                                        A: Yes! On-site free parking is provided at 123 Main Street.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 7: RSVP -->
+        <section id="page7" class="page-section section-rsvp">
+            <div class="container">
+                <div class="glass-card rsvp-card p-4 p-md-5 mx-auto max-width-700">
+                    <h2 class="section-title text-center text-navy mb-2" data-i18n="p7_title">RSVP</h2>
+                    <p class="text-center text-muted mb-4 font-weight-bold">
+                        <i class="fa-solid fa-paw text-lightblue mr-1"></i> <span data-i18n="p7_subtitle">Please let us know if you can attend!</span> <i class="fa-solid fa-paw text-lightblue ml-1"></i>
+                    </p>
+                    
+                    <div id="rsvpAlert" class="alert alert-info d-none" role="alert">
+                        <i class="fa-solid fa-paw mr-2"></i> <span data-i18n="p7_alert">Thank you! Your RSVP has been received with joy!</span>
+                    </div>
+
+                    <form id="rsvpForm" novalidate>
+                        <div class="form-group">
+                            <label for="fullName" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_name">Name</span> <span class="text-lightblue">*</span></label>
+                            <input type="text" class="form-control light-input" id="fullName" placeholder="Your full name" data-i18n-ph="p7_ph_name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_email">Email Address</span> <span class="text-lightblue">*</span></label>
+                            <input type="email" class="form-control light-input" id="email" placeholder="name@example.com" data-i18n-ph="p7_ph_email" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="attendance" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_attendance">Attendance</span> <span class="text-lightblue">*</span></label>
+                                <select class="form-control light-input" id="attendance" required>
+                                    <option value="yes" data-i18n="p7_att_yes">Joyfully Accepts</option>
+                                    <option value="no" data-i18n="p7_att_no">Regretfully Declines</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="guestCount" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_guests">Number of Guests</span> <span class="text-lightblue">*</span></label>
+                                <select class="form-control light-input" id="guestCount" required>
+                                    <option value="1" data-i18n="p7_gst_1">1 (Just me)</option>
+                                    <option value="2" data-i18n="p7_gst_2">2 (Me + Plus 1)</option>
+                                    <option value="3" data-i18n="p7_gst_3">3 Guests</option>
+                                    <option value="4" data-i18n="p7_gst_4">4 Guests</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dietary" class="text-dark font-weight-bold" data-i18n="p7_lbl_dietary">Dietary Choice / Options</label>
+                            <select class="form-control light-input" id="dietary">
+                                <option value="standard" data-i18n="p7_diet_std">Standard Menu</option>
+                                <option value="vegetarian" data-i18n="p7_diet_veg">Vegetarian Option</option>
+                                <option value="vegan" data-i18n="p7_diet_vgn">Vegan Option</option>
+                                <option value="gluten-free" data-i18n="p7_diet_gf">Gluten-Free</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes" class="text-dark font-weight-bold" data-i18n="p7_lbl_notes">Special Notes / Messages</label>
+                            <textarea class="form-control light-input" id="notes" rows="3" placeholder="Dietary restrictions, song requests, or messages for the couple" data-i18n-ph="p7_ph_notes"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-sky-blue btn-block btn-lg mt-4 shadow">
+                            <i class="fa-solid fa-paw mr-2"></i> <span data-i18n="p7_submit">Submit RSVP</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Bootstrap & jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>

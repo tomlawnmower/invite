@@ -1,0 +1,545 @@
+/* ==========================================================================
+   Alice & Bob's Wedding - Light Blue & Dog Paw Prints Theme
+   Mobile-Optimized, Responsive & Multi-Language (EN / Traditional Chinese)
+   ========================================================================== */
+
+:root {
+    --bg-light-1: #e0f2fe;
+    --bg-light-2: #f0f9ff;
+    --bg-light-3: #e0f7fa;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --blue-primary: #0284c7;
+    --blue-hover: #0369a1;
+    --blue-light: #38bdf8;
+    --blue-soft: #bae6fd;
+    --text-navy: #0f172a;
+    --text-slate: #334155;
+    --text-muted: #64748b;
+    --font-heading: 'Playfair Display', 'Noto Serif TC', Georgia, serif;
+    --font-body: 'Quicksand', 'Montserrat', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+    height: 100%;
+    background-color: var(--bg-light-2);
+    color: var(--text-navy);
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* Floating Language Switcher Bar */
+.language-switcher {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 1050;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--blue-soft);
+    border-radius: 24px;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+.language-switcher .lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 3px 8px;
+    border-radius: 14px;
+    transition: all 0.25s ease;
+}
+
+.language-switcher .lang-btn:focus {
+    outline: none;
+}
+
+.language-switcher .lang-btn.active {
+    color: #ffffff;
+    background: var(--blue-primary);
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+.language-switcher .lang-divider {
+    color: var(--blue-soft);
+    font-size: 0.75rem;
+}
+
+/* Fluid Typography */
+h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.wedding-title {
+    font-size: clamp(2rem, 7.5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--blue-primary);
+    text-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
+    line-height: 1.25;
+}
+
+.wedding-subtitle {
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+    font-weight: 600;
+    color: #0369a1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-weight: 700;
+    color: var(--blue-primary);
+    line-height: 1.25;
+}
+
+.section-subtitle {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    color: var(--blue-primary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.text-navy {
+    color: var(--text-navy) !important;
+}
+
+.text-lightblue {
+    color: var(--blue-primary) !important;
+}
+
+.blue-hr {
+    border-top: 2px solid var(--blue-light);
+    opacity: 0.6;
+    width: 60px;
+    margin: 15px auto;
+}
+
+/* Paw Print Element Styles */
+.paw-divider {
+    color: var(--blue-light);
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    letter-spacing: 8px;
+    margin: 10px 0;
+}
+
+.paw-divider i {
+    transition: transform 0.3s ease;
+}
+
+.paw-divider i:hover {
+    transform: scale(1.3) rotate(15deg);
+    color: var(--blue-primary);
+}
+
+.paw-badge {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    color: var(--blue-primary);
+    margin-bottom: 15px;
+}
+
+.bounce-paw {
+    animation: pulsePaw 2.5s infinite ease-in-out;
+}
+
+@keyframes pulsePaw {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.15) rotate(8deg); }
+}
+
+/* Page Sections & Layout */
+.pages-container {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.page-section {
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 75px 16px 50px 16px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    overflow-x: hidden;
+}
+
+/* Light Blue Section Background Gradients */
+.section-envelope {
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #dbeafe 100%);
+}
+
+.section-save-the-date {
+    background: radial-gradient(circle at center, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.section-invitation {
+    background: linear-gradient(180deg, #e0f2fe 0%, #e0f7fa 100%);
+}
+
+.section-venue {
+    background: radial-gradient(circle at top right, #f0f9ff 0%, #dbeafe 100%);
+}
+
+.section-dresscode {
+    background: linear-gradient(135deg, #e0f7fa 0%, #f0f9ff 100%);
+}
+
+.section-faq {
+    background: radial-gradient(circle at bottom left, #e0f2fe 0%, #f0f9ff 100%);
+}
+
+.section-rsvp {
+    background: linear-gradient(180deg, #f0f9ff 0%, #dbeafe 100%);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 2px solid rgba(56, 189, 248, 0.35);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.1);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.max-width-700 {
+    max-width: 700px;
+}
+
+/* Floating Dot Navigation */
+.nav-dots {
+    position: fixed;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-dots .dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid var(--blue-primary);
+    transition: all 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2);
+}
+
+.nav-dots .dot .dot-paw {
+    font-size: 0.7rem;
+    color: var(--blue-primary);
+    transition: all 0.3s ease;
+}
+
+.nav-dots .dot:hover,
+.nav-dots .dot.active {
+    background-color: var(--blue-primary);
+    box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+    transform: scale(1.2);
+}
+
+.nav-dots .dot:hover .dot-paw,
+.nav-dots .dot.active .dot-paw {
+    color: #ffffff;
+}
+
+.nav-dots .dot::before {
+    content: attr(data-title);
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #0f172a;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border: 1px solid var(--blue-light);
+}
+
+.nav-dots .dot:hover::before {
+    opacity: 1;
+}
+
+/* Video Placeholder Card */
+.video-placeholder-card {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    border: 2px solid var(--blue-soft);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.15);
+}
+
+.video-overlay-notice {
+    padding: 20px 15px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--text-navy);
+    transition: opacity 0.4s ease;
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+    color: var(--blue-primary);
+    font-size: 1.3rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+/* Photo Frame */
+.photo-frame-wrapper {
+    width: 100%;
+    max-width: 440px;
+    padding: 8px;
+    background: linear-gradient(135deg, var(--blue-light), #38bdf8, #bae6fd);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(2, 132, 199, 0.18);
+}
+
+.photo-frame {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+.date-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 2px solid var(--blue-primary);
+    border-radius: 30px;
+    color: var(--blue-primary);
+    font-weight: 700;
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+}
+
+/* Invitation Card */
+.invitation-card {
+    max-width: 750px;
+}
+
+.monogram {
+    font-size: clamp(2.2rem, 7vw, 3.5rem);
+    color: var(--blue-primary);
+    font-weight: 700;
+}
+
+.invitation-prose {
+    font-family: var(--font-heading);
+    font-size: clamp(1.15rem, 4vw, 1.6rem);
+    line-height: 1.7;
+    color: var(--text-slate);
+    font-style: italic;
+    border: none;
+    padding: 0 10px;
+}
+
+/* Detail Icons */
+.detail-icon {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    color: var(--blue-primary);
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+/* Dress Code Attire Box */
+.attire-box {
+    background: rgba(2, 132, 199, 0.06);
+    border-left: 4px solid var(--blue-primary);
+}
+
+/* FAQ Cards */
+.faq-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--blue-soft);
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.06);
+}
+
+.faq-card .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    padding: 12px 15px;
+}
+
+.faq-card .btn-link {
+    text-decoration: none;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    white-space: normal;
+    word-break: break-word;
+}
+
+.faq-card .btn-link:focus {
+    box-shadow: none;
+}
+
+.faq-card .card-body {
+    padding: 14px 16px;
+    font-size: clamp(0.9rem, 3.2vw, 1rem);
+}
+
+/* RSVP Form Controls */
+.light-input {
+    background: #ffffff;
+    border: 2px solid var(--blue-soft);
+    color: var(--text-navy) !important;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+}
+
+.light-input:focus {
+    background: #ffffff;
+    border-color: var(--blue-primary);
+    box-shadow: 0 0 8px rgba(2, 132, 199, 0.25);
+}
+
+.btn-sky-blue {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 12px 16px;
+    font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+    width: 100%;
+}
+
+.btn-sky-blue:hover {
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3);
+}
+
+.btn-outline-blue {
+    border: 2px solid var(--blue-primary);
+    color: var(--blue-primary);
+    background: transparent;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: clamp(0.85rem, 3.2vw, 1rem);
+    word-break: break-word;
+    white-space: normal;
+}
+
+.btn-outline-blue:hover {
+    background: var(--blue-primary);
+    color: #ffffff;
+}
+
+/* Mobile Portrait Mode Specific Adjustments (< 576px) */
+@media (max-width: 575.98px) {
+    .page-section {
+        padding: 60px 10px 30px 10px;
+    }
+
+    .glass-card {
+        padding: 20px 14px !important;
+        border-radius: 16px;
+    }
+
+    .nav-dots {
+        right: 6px;
+        gap: 8px;
+    }
+
+    .nav-dots .dot {
+        width: 18px;
+        height: 18px;
+        border-width: 1.5px;
+    }
+
+    .nav-dots .dot .dot-paw {
+        font-size: 0.55rem;
+    }
+
+    .nav-dots .dot::before {
+        display: none;
+    }
+
+    .photo-frame-wrapper {
+        padding: 6px;
+    }
+
+    .video-overlay-notice {
+        padding: 15px 10px;
+    }
+
+    .invitation-prose {
+        padding: 0;
+    }
+
+    .accordion .card-header button {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .language-switcher {
+        top: 10px;
+        left: 10px;
+        padding: 2px 8px;
+    }
+
+    .language-switcher .lang-btn {
+        font-size: 0.75rem;
+        padding: 2px 6px;
+    }
+}
