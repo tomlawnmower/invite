@@ -243,26 +243,142 @@ document.addEventListener('DOMContentLoaded', function () {
     const sections = Array.from(document.querySelectorAll('.page-section'));
     const navDots = document.querySelectorAll('.nav-dots .dot');
 
-    let targetTime = 0;
     let videoHasEnded = false;
-    let currentSectionIndex = 0;
-    let isAnimating = false;
 
-    // 1. Intersection Observer keeps currentSectionIndex in sync & triggers entrance animations
+    // --- Virtual scroll accumulator config ---
+    // SCROLL_BUDGET: total virtual "scroll pixels" to scrub 0→100% of the video.
+    // Raise this number to make the video scrub feel slower / require more scroll.
+    const SCROLL_BUDGET = 2500;
+    let virtualScroll = 0; // accumulated virtual pixels (0 – SCROLL_BUDGET)
+
+    // Normalise a WheelEvent delta to pixel equivalents regardless of deltaMode.
+    function wheelToPixels(e) {
+        switch (e.deltaMode) {
+            case 1: return e.deltaY * 32;              // DOM_DELTA_LINE  (~32 px/line)
+            case 2: return e.deltaY * window.innerHeight; // DOM_DELTA_PAGE
+            default: return e.deltaY;                  // DOM_DELTA_PIXEL (already px)
+        }
+    }
+
+    // Seek video to `time` seconds using fastSeek when available (keyframe-accurate
+    // and much cheaper than setting currentTime directly).
+    function seekTo(time) {
+        if (!envelopeVideo || isNaN(envelopeVideo.duration)) return;
+        time = Math.max(0, Math.min(envelopeVideo.duration, time));
+        // Skip trivially small seeks to avoid hammering the decoder
+        if (Math.abs(time - envelopeVideo.currentTime) < 0.01) return;
+        if (typeof envelopeVideo.fastSeek === 'function') {
+            envelopeVideo.fastSeek(time);
+        } else {
+            envelopeVideo.currentTime = time;
+        }
+    }
+
+    // Advance/rewind the virtual scroll position and seek the video to match.
+    function applyVirtualScroll(pixelDelta) {
+        const duration = envelopeVideo ? envelopeVideo.duration : NaN;
+        if (!duration || isNaN(duration)) return;
+
+        virtualScroll = Math.max(0, Math.min(SCROLL_BUDGET, virtualScroll + pixelDelta));
+        const progress = virtualScroll / SCROLL_BUDGET;
+
+        if (progress >= 1) {
+            // User has scrolled all the way through — unlock and advance
+            videoHasEnded = true;
+            seekTo(duration);
+            if (page1) page1.classList.remove('video-locked');
+            setTimeout(() => {
+                if (page2) page2.scrollIntoView({ behavior: 'smooth' });
+            }, 80);
+        } else {
+            if (pixelDelta < 0) {
+                // Scrolling back: re-lock Page 1 as long as progress > 0
+                videoHasEnded = false;
+                if (page1) page1.classList.add('video-locked');
+            }
+            envelopeVideo.pause();
+            seekTo(progress * duration);
+        }
+    }
+
+    // 1. Video Initialisation (starts paused at frame 0)
+    if (envelopeVideo) {
+        envelopeVideo.pause();
+
+        // Click / tap to play or pause the video freely
+        envelopeVideo.addEventListener('click', function () {
+            if (envelopeVideo.paused) {
+                envelopeVideo.play().catch(() => {});
+            } else {
+                envelopeVideo.pause();
+            }
+        });
+
+        // If the video plays naturally to the end (e.g. user clicked play), unlock too
+        envelopeVideo.addEventListener('ended', function () {
+            videoHasEnded = true;
+            virtualScroll = SCROLL_BUDGET;
+            if (page1) page1.classList.remove('video-locked');
+            if (page2) page2.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // 2. Wheel handler — intercepts scroll on Page 1 and drives the video instead
+        function handlePage1Wheel(e) {
+            if (videoHasEnded) return;
+            if (window.scrollY > 80) return;
+
+            const pixels = wheelToPixels(e);
+
+            // Only intercept downward scroll (or upward while video is mid-way)
+            if (pixels > 0 || (pixels < 0 && virtualScroll > 0 && window.scrollY <= 20)) {
+                if (e.cancelable) e.preventDefault();
+                applyVirtualScroll(pixels);
+            }
+        }
+
+        // 3. Touch handler — same logic, driven by finger movement distance
+        let touchStartY = 0;
+
+        function handlePage1TouchStart(e) {
+            if (window.scrollY <= 80 && e.touches.length === 1) {
+                touchStartY = e.touches[0].clientY;
+            }
+        }
+
+        function handlePage1TouchMove(e) {
+            if (videoHasEnded) return;
+            if (window.scrollY > 80) return;
+            if (e.touches.length !== 1) return;
+
+            const touchY = e.touches[0].clientY;
+            // Positive deltaY = finger moved up = user scrolling down
+            const deltaY = (touchStartY - touchY) * 2.5; // sensitivity multiplier
+            touchStartY = touchY;
+
+            if (deltaY > 0 || (deltaY < 0 && virtualScroll > 0 && window.scrollY <= 20)) {
+                if (e.cancelable) e.preventDefault();
+                applyVirtualScroll(deltaY);
+            }
+        }
+
+        if (page1) {
+            page1.addEventListener('touchstart', handlePage1TouchStart, { passive: false });
+            page1.addEventListener('touchmove', handlePage1TouchMove, { passive: false });
+        }
+        window.addEventListener('wheel', handlePage1Wheel, { passive: false });
+    }
+
+    // 4. Intersection Observer for Entrance Animations and Navigation Dots
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.35
+        threshold: 0.30
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
-                const index = sections.indexOf(entry.target);
-                if (index !== -1) {
-                    currentSectionIndex = index;
-                }
                 const currentId = entry.target.getAttribute('id');
                 navDots.forEach(dot => {
                     if (dot.getAttribute('href') === `#${currentId}`) {
@@ -277,182 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     sections.forEach(section => observer.observe(section));
 
-    // 2. Section Jump Controller
-    function goToSection(targetIndex) {
-        if (targetIndex < 0 || targetIndex >= sections.length) return;
-        isAnimating = true;
-        currentSectionIndex = targetIndex;
-
-        const targetEl = sections[targetIndex];
-        if (targetEl) {
-            targetEl.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        setTimeout(() => {
-            isAnimating = false;
-        }, 800);
-    }
-
-    // 3. High-Performance RAF Render Loop for Page 1 Video Scrubbing
-    function renderVideoScrub() {
-        if (envelopeVideo && envelopeVideo.duration && !isNaN(envelopeVideo.duration)) {
-            if (!envelopeVideo.paused) {
-                targetTime = envelopeVideo.currentTime;
-            } else {
-                const diff = targetTime - envelopeVideo.currentTime;
-                if (Math.abs(diff) > 0.008 && !envelopeVideo.seeking) {
-                    envelopeVideo.currentTime = envelopeVideo.currentTime + diff * 0.35;
-                }
-            }
-        }
-        requestAnimationFrame(renderVideoScrub);
-    }
-    requestAnimationFrame(renderVideoScrub);
-
-    // 4. Video Click & Auto-advance Handlers
-    if (envelopeVideo) {
-        envelopeVideo.pause();
-
-        envelopeVideo.addEventListener('click', function () {
-            if (envelopeVideo.paused) {
-                envelopeVideo.play().catch(err => {
-                    console.log('Video play error:', err);
-                });
-            } else {
-                envelopeVideo.pause();
-            }
-        });
-
-        envelopeVideo.addEventListener('ended', function () {
-            videoHasEnded = true;
-            if (page1) page1.classList.remove('video-locked');
-            goToSection(1);
-        });
-    }
-
-    // 5. Universal Wheel & Scroll Snap Listener
-    window.addEventListener('wheel', function (e) {
-        if (Math.abs(e.deltaY) < 10) return;
-
-        // If a section scroll animation is currently in progress, absorb extra wheel ticks
-        if (isAnimating) {
-            e.preventDefault();
-            return;
-        }
-
-        // SPECIAL CASE: Page 1 Video Scrubbing
-        if (currentSectionIndex === 0 && !videoHasEnded) {
-            const duration = envelopeVideo ? envelopeVideo.duration : 0;
-            if (duration && !isNaN(duration)) {
-                if (e.deltaY > 0) { // Scroll DOWN on Page 1
-                    if (targetTime < duration - 0.05) {
-                        e.preventDefault();
-                        envelopeVideo.pause();
-                        const deltaRatio = e.deltaY / 450;
-                        targetTime = Math.min(duration, targetTime + deltaRatio * duration);
-
-                        if (targetTime >= duration - 0.05) {
-                            videoHasEnded = true;
-                            if (page1) page1.classList.remove('video-locked');
-                            goToSection(1);
-                        }
-                        return;
-                    }
-                } else if (e.deltaY < 0) { // Scroll UP on Page 1
-                    if (targetTime > 0.05) {
-                        e.preventDefault();
-                        envelopeVideo.pause();
-                        const deltaRatio = Math.abs(e.deltaY) / 450;
-                        targetTime = Math.max(0, targetTime - deltaRatio * duration);
-                        return;
-                    }
-                }
-            }
-        }
-
-        // ALL OTHER PAGES (Pages 2 to 7, or Page 1 when video completed)
-        e.preventDefault();
-
-        if (e.deltaY > 0) { // Scroll DOWN -> Next Section
-            if (currentSectionIndex < sections.length - 1) {
-                goToSection(currentSectionIndex + 1);
-            }
-        } else if (e.deltaY < 0) { // Scroll UP -> Prev Section
-            if (currentSectionIndex > 0) {
-                goToSection(currentSectionIndex - 1);
-            }
-        }
-    }, { passive: false });
-
-    // 6. Universal Touch Swipe Snap Listener (Mobile Devices)
-    let touchStartY = 0;
-
-    window.addEventListener('touchstart', function (e) {
-        if (e.touches.length === 1) {
-            touchStartY = e.touches[0].clientY;
-        }
-    }, { passive: true });
-
-    window.addEventListener('touchmove', function (e) {
-        if (e.touches.length !== 1) return;
-
-        if (isAnimating) {
-            if (e.cancelable) e.preventDefault();
-            return;
-        }
-
-        const touchY = e.touches[0].clientY;
-        const deltaY = touchStartY - touchY;
-
-        // SPECIAL CASE: Page 1 Video Scrubbing on Mobile
-        if (currentSectionIndex === 0 && !videoHasEnded) {
-            const duration = envelopeVideo ? envelopeVideo.duration : 0;
-            if (duration && !isNaN(duration)) {
-                if (deltaY > 0) { // Swipe UP (Scroll DOWN)
-                    if (targetTime < duration - 0.05) {
-                        if (e.cancelable) e.preventDefault();
-                        touchStartY = touchY;
-                        envelopeVideo.pause();
-                        const deltaRatio = deltaY / 300;
-                        targetTime = Math.min(duration, targetTime + deltaRatio * duration);
-
-                        if (targetTime >= duration - 0.05) {
-                            videoHasEnded = true;
-                            if (page1) page1.classList.remove('video-locked');
-                            goToSection(1);
-                        }
-                        return;
-                    }
-                } else if (deltaY < 0) { // Swipe DOWN (Scroll UP)
-                    if (targetTime > 0.05) {
-                        if (e.cancelable) e.preventDefault();
-                        touchStartY = touchY;
-                        envelopeVideo.pause();
-                        const deltaRatio = Math.abs(deltaY) / 300;
-                        targetTime = Math.max(0, targetTime - deltaRatio * duration);
-                        return;
-                    }
-                }
-            }
-        }
-
-        // ALL OTHER PAGES (Pages 2 to 7)
-        if (Math.abs(deltaY) > 30) {
-            if (e.cancelable) e.preventDefault();
-            touchStartY = touchY;
-            if (deltaY > 0) { // Swipe UP -> Next Section
-                if (currentSectionIndex < sections.length - 1) {
-                    goToSection(currentSectionIndex + 1);
-                }
-            } else if (deltaY < 0) { // Swipe DOWN -> Prev Section
-                if (currentSectionIndex > 0) {
-                    goToSection(currentSectionIndex - 1);
-                }
-            }
-        }
-    }, { passive: false });
-
-    // 7. RSVP Form Submission Handler
+    // 5. RSVP Form Submission Handler
     const rsvpForm = document.getElementById('rsvpForm');
     const rsvpAlert = document.getElementById('rsvpAlert');
 
@@ -478,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 8. Map button listener
+    // 6. Map button listener
     const mapBtn = document.getElementById('mapBtn');
     if (mapBtn) {
         mapBtn.addEventListener('click', function (e) {
