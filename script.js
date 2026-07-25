@@ -183,7 +183,7 @@ const translations = {
         p7_diet_gf: '無麩質飲食 (Gluten-Free)',
         p7_lbl_notes: '備註 / 給新人的祝福',
         p7_ph_notes: '飲食過敏需求、點歌或給新人的溫馨祝福',
-        p7_submit: '送出出席回覆',
+        p7_submit: 'Submit RSVP',
         p7_validation_err: '請填寫所有必填欄位 (*)。'
     }
 };
@@ -236,175 +236,33 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize language
     setLanguage(currentLang);
 
-    // Page sections
+    // Page section DOM references
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('page2');
     const envelopeVideo = document.getElementById('envelopeVideo');
+    const sections = Array.from(document.querySelectorAll('.page-section'));
+    const navDots = document.querySelectorAll('.nav-dots .dot');
 
     let targetTime = 0;
     let videoHasEnded = false;
+    let currentSectionIndex = 0;
+    let isAnimating = false;
 
-    // 1. High-Performance RAF Render Loop for Smooth Video Scrubbing
-    function renderVideoScrub() {
-        if (envelopeVideo && envelopeVideo.duration && !isNaN(envelopeVideo.duration)) {
-            if (!envelopeVideo.paused) {
-                // Keep targetTime updated with live playback time when playing
-                targetTime = envelopeVideo.currentTime;
-            } else {
-                // Smoothly lerp video currentTime to targetTime in sync with scroll
-                const diff = targetTime - envelopeVideo.currentTime;
-                if (Math.abs(diff) > 0.008 && !envelopeVideo.seeking) {
-                    envelopeVideo.currentTime = envelopeVideo.currentTime + diff * 0.35;
-                }
-            }
-        }
-        requestAnimationFrame(renderVideoScrub);
-    }
-    requestAnimationFrame(renderVideoScrub);
-
-    // 2. Video Initialization (Starts in Paused State)
-    if (envelopeVideo) {
-        envelopeVideo.pause();
-
-        // Click on video toggles play / pause
-        envelopeVideo.addEventListener('click', function () {
-            if (envelopeVideo.paused) {
-                envelopeVideo.play().catch(err => {
-                    console.log('Video play error:', err);
-                });
-            } else {
-                envelopeVideo.pause();
-            }
-        });
-
-        const unlockAndScroll = function () {
-            videoHasEnded = true;
-            if (page1) {
-                page1.classList.remove('video-locked');
-            }
-            if (page2) {
-                page2.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-
-        // When video ends automatically, scroll to Page 2
-        envelopeVideo.addEventListener('ended', unlockAndScroll);
-
-        // 3. Scroll Input Listeners (Wheel & Touch)
-        function handleWheelScrub(e) {
-            if (!page1 || !envelopeVideo || !envelopeVideo.duration) return;
-
-            const rect = page1.getBoundingClientRect();
-            const isPage1Active = rect.top >= -120 && rect.top <= 120;
-            if (!isPage1Active) return;
-
-            const duration = envelopeVideo.duration;
-
-            if (e.deltaY > 0) { // Scrolling DOWN
-                if (!videoHasEnded && targetTime < duration - 0.05) {
-                    if (e.cancelable) e.preventDefault();
-                    envelopeVideo.pause();
-
-                    const deltaRatio = e.deltaY / 450;
-                    targetTime = Math.min(duration, targetTime + deltaRatio * duration);
-
-                    if (targetTime >= duration - 0.05) {
-                        unlockAndScroll();
-                    }
-                }
-            } else if (e.deltaY < 0) { // Scrolling UP
-                if (targetTime > 0.05 && window.scrollY <= 20) {
-                    if (e.cancelable) e.preventDefault();
-                    videoHasEnded = false;
-                    if (page1) page1.classList.add('video-locked');
-                    envelopeVideo.pause();
-
-                    const deltaRatio = Math.abs(e.deltaY) / 450;
-                    targetTime = Math.max(0, targetTime - deltaRatio * duration);
-                }
-            }
-        }
-
-        let touchStartY = 0;
-
-        function handleTouchStart(e) {
-            if (e.touches.length === 1) {
-                touchStartY = e.touches[0].clientY;
-            }
-        }
-
-        function handleTouchMove(e) {
-            if (!page1 || !envelopeVideo || !envelopeVideo.duration) return;
-
-            const rect = page1.getBoundingClientRect();
-            const isPage1Active = rect.top >= -120 && rect.top <= 120;
-            if (!isPage1Active) return;
-
-            if (e.touches.length === 1) {
-                const touchY = e.touches[0].clientY;
-                const deltaY = touchStartY - touchY;
-                touchStartY = touchY;
-
-                const duration = envelopeVideo.duration;
-
-                if (deltaY > 0) { // Swipe UP (Scroll DOWN)
-                    if (!videoHasEnded && targetTime < duration - 0.05) {
-                        if (e.cancelable) e.preventDefault();
-                        envelopeVideo.pause();
-                        const deltaRatio = deltaY / 300;
-                        targetTime = Math.min(duration, targetTime + deltaRatio * duration);
-
-                        if (targetTime >= duration - 0.05) {
-                            unlockAndScroll();
-                        }
-                    }
-                } else if (deltaY < 0) { // Swipe DOWN (Scroll UP)
-                    if (targetTime > 0.05 && window.scrollY <= 20) {
-                        if (e.cancelable) e.preventDefault();
-                        videoHasEnded = false;
-                        if (page1) page1.classList.add('video-locked');
-                        envelopeVideo.pause();
-                        const deltaRatio = Math.abs(deltaY) / 300;
-                        targetTime = Math.max(0, targetTime - deltaRatio * duration);
-                    }
-                }
-            }
-        }
-
-        // Attach listeners directly to page1 and window with passive: false
-        if (page1) {
-            page1.addEventListener('touchstart', handleTouchStart, { passive: false });
-            page1.addEventListener('touchmove', handleTouchMove, { passive: false });
-        }
-        window.addEventListener('wheel', handleWheelScrub, { passive: false });
-
-        // Scroll lock listener fallback to keep view locked on top of page1 while scrubbing
-        window.addEventListener('scroll', function () {
-            if (!page1) return;
-            const rect = page1.getBoundingClientRect();
-            const isAtPage1 = rect.top >= -50 && rect.top <= 50;
-
-            if (isAtPage1 && !videoHasEnded && targetTime < envelopeVideo.duration - 0.05) {
-                if (window.scrollY > 5) {
-                    window.scrollTo({ top: 0, behavior: 'instant' });
-                }
-            }
-        });
-    }
-
-    // 4. Intersection Observer for Navigation Dots
-    const sections = document.querySelectorAll('.page-section');
-    const navDots = document.querySelectorAll('.nav-dots .dot');
-
+    // 1. Intersection Observer keeps currentSectionIndex in sync & triggers entrance animations
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5
+        threshold: 0.35
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                const index = sections.indexOf(entry.target);
+                if (index !== -1) {
+                    currentSectionIndex = index;
+                }
                 const currentId = entry.target.getAttribute('id');
                 navDots.forEach(dot => {
                     if (dot.getAttribute('href') === `#${currentId}`) {
@@ -417,11 +275,184 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, observerOptions);
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
 
-    // 5. RSVP Form Submission Handler
+    // 2. Section Jump Controller
+    function goToSection(targetIndex) {
+        if (targetIndex < 0 || targetIndex >= sections.length) return;
+        isAnimating = true;
+        currentSectionIndex = targetIndex;
+
+        const targetEl = sections[targetIndex];
+        if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, 800);
+    }
+
+    // 3. High-Performance RAF Render Loop for Page 1 Video Scrubbing
+    function renderVideoScrub() {
+        if (envelopeVideo && envelopeVideo.duration && !isNaN(envelopeVideo.duration)) {
+            if (!envelopeVideo.paused) {
+                targetTime = envelopeVideo.currentTime;
+            } else {
+                const diff = targetTime - envelopeVideo.currentTime;
+                if (Math.abs(diff) > 0.008 && !envelopeVideo.seeking) {
+                    envelopeVideo.currentTime = envelopeVideo.currentTime + diff * 0.35;
+                }
+            }
+        }
+        requestAnimationFrame(renderVideoScrub);
+    }
+    requestAnimationFrame(renderVideoScrub);
+
+    // 4. Video Click & Auto-advance Handlers
+    if (envelopeVideo) {
+        envelopeVideo.pause();
+
+        envelopeVideo.addEventListener('click', function () {
+            if (envelopeVideo.paused) {
+                envelopeVideo.play().catch(err => {
+                    console.log('Video play error:', err);
+                });
+            } else {
+                envelopeVideo.pause();
+            }
+        });
+
+        envelopeVideo.addEventListener('ended', function () {
+            videoHasEnded = true;
+            if (page1) page1.classList.remove('video-locked');
+            goToSection(1);
+        });
+    }
+
+    // 5. Universal Wheel & Scroll Snap Listener
+    window.addEventListener('wheel', function (e) {
+        if (Math.abs(e.deltaY) < 10) return;
+
+        // If a section scroll animation is currently in progress, absorb extra wheel ticks
+        if (isAnimating) {
+            e.preventDefault();
+            return;
+        }
+
+        // SPECIAL CASE: Page 1 Video Scrubbing
+        if (currentSectionIndex === 0 && !videoHasEnded) {
+            const duration = envelopeVideo ? envelopeVideo.duration : 0;
+            if (duration && !isNaN(duration)) {
+                if (e.deltaY > 0) { // Scroll DOWN on Page 1
+                    if (targetTime < duration - 0.05) {
+                        e.preventDefault();
+                        envelopeVideo.pause();
+                        const deltaRatio = e.deltaY / 450;
+                        targetTime = Math.min(duration, targetTime + deltaRatio * duration);
+
+                        if (targetTime >= duration - 0.05) {
+                            videoHasEnded = true;
+                            if (page1) page1.classList.remove('video-locked');
+                            goToSection(1);
+                        }
+                        return;
+                    }
+                } else if (e.deltaY < 0) { // Scroll UP on Page 1
+                    if (targetTime > 0.05) {
+                        e.preventDefault();
+                        envelopeVideo.pause();
+                        const deltaRatio = Math.abs(e.deltaY) / 450;
+                        targetTime = Math.max(0, targetTime - deltaRatio * duration);
+                        return;
+                    }
+                }
+            }
+        }
+
+        // ALL OTHER PAGES (Pages 2 to 7, or Page 1 when video completed)
+        e.preventDefault();
+
+        if (e.deltaY > 0) { // Scroll DOWN -> Next Section
+            if (currentSectionIndex < sections.length - 1) {
+                goToSection(currentSectionIndex + 1);
+            }
+        } else if (e.deltaY < 0) { // Scroll UP -> Prev Section
+            if (currentSectionIndex > 0) {
+                goToSection(currentSectionIndex - 1);
+            }
+        }
+    }, { passive: false });
+
+    // 6. Universal Touch Swipe Snap Listener (Mobile Devices)
+    let touchStartY = 0;
+
+    window.addEventListener('touchstart', function (e) {
+        if (e.touches.length === 1) {
+            touchStartY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', function (e) {
+        if (e.touches.length !== 1) return;
+
+        if (isAnimating) {
+            if (e.cancelable) e.preventDefault();
+            return;
+        }
+
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY;
+
+        // SPECIAL CASE: Page 1 Video Scrubbing on Mobile
+        if (currentSectionIndex === 0 && !videoHasEnded) {
+            const duration = envelopeVideo ? envelopeVideo.duration : 0;
+            if (duration && !isNaN(duration)) {
+                if (deltaY > 0) { // Swipe UP (Scroll DOWN)
+                    if (targetTime < duration - 0.05) {
+                        if (e.cancelable) e.preventDefault();
+                        touchStartY = touchY;
+                        envelopeVideo.pause();
+                        const deltaRatio = deltaY / 300;
+                        targetTime = Math.min(duration, targetTime + deltaRatio * duration);
+
+                        if (targetTime >= duration - 0.05) {
+                            videoHasEnded = true;
+                            if (page1) page1.classList.remove('video-locked');
+                            goToSection(1);
+                        }
+                        return;
+                    }
+                } else if (deltaY < 0) { // Swipe DOWN (Scroll UP)
+                    if (targetTime > 0.05) {
+                        if (e.cancelable) e.preventDefault();
+                        touchStartY = touchY;
+                        envelopeVideo.pause();
+                        const deltaRatio = Math.abs(deltaY) / 300;
+                        targetTime = Math.max(0, targetTime - deltaRatio * duration);
+                        return;
+                    }
+                }
+            }
+        }
+
+        // ALL OTHER PAGES (Pages 2 to 7)
+        if (Math.abs(deltaY) > 30) {
+            if (e.cancelable) e.preventDefault();
+            touchStartY = touchY;
+            if (deltaY > 0) { // Swipe UP -> Next Section
+                if (currentSectionIndex < sections.length - 1) {
+                    goToSection(currentSectionIndex + 1);
+                }
+            } else if (deltaY < 0) { // Swipe DOWN -> Prev Section
+                if (currentSectionIndex > 0) {
+                    goToSection(currentSectionIndex - 1);
+                }
+            }
+        }
+    }, { passive: false });
+
+    // 7. RSVP Form Submission Handler
     const rsvpForm = document.getElementById('rsvpForm');
     const rsvpAlert = document.getElementById('rsvpAlert');
 
@@ -447,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 6. Map button listener
+    // 8. Map button listener
     const mapBtn = document.getElementById('mapBtn');
     if (mapBtn) {
         mapBtn.addEventListener('click', function (e) {

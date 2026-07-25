@@ -32,9 +32,6 @@ html, body {
     background-color: var(--bg-light-2);
     color: var(--text-navy);
     font-family: var(--font-body);
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
     overflow-x: hidden;
 }
 
@@ -180,6 +177,7 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     width: 100%;
     max-width: 100vw;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -548,3 +546,45 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
         padding: 2px 6px;
     }
 }
+
+/* ==========================================================================
+   Scroll-Driven Animations (Pages 2 - 7)
+   ========================================================================== */
+
+/* Initial hidden state for titles (Pages 2 to 7): 20px drop down */
+.page-section:not(#page1) .section-title,
+.page-section:not(#page1) .section-subtitle,
+.page-section:not(#page1) .wedding-title {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1.1s ease-out, transform 0.8s ease-out;
+}
+
+/* Initial hidden state for body elements (Pages 2 to 7): 20px drop up */
+.page-section:not(#page1) .glass-card,
+.page-section:not(#page1) .photo-frame-wrapper,
+.page-section:not(#page1) .location-brief,
+.page-section:not(#page1) .accordion,
+.page-section:not(#page1) .date-badge {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.1s ease-out 0.25s, transform 1.1s ease-out 0.25s;
+}
+
+/* Full opacity settled state when section comes into view */
+.page-section:not(#page1).in-view .section-title,
+.page-section:not(#page1).in-view .section-subtitle,
+.page-section:not(#page1).in-view .wedding-title {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.page-section:not(#page1).in-view .glass-card,
+.page-section:not(#page1).in-view .photo-frame-wrapper,
+.page-section:not(#page1).in-view .location-brief,
+.page-section:not(#page1).in-view .accordion,
+.page-section:not(#page1).in-view .date-badge {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
