@@ -377,8 +377,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            entry.target.classList.toggle('in-view', entry.isIntersecting);
             if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
                 const currentId = entry.target.getAttribute('id');
                 navDots.forEach(dot => {
                     if (dot.getAttribute('href') === `#${currentId}`) {
