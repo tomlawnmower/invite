@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
@@ -31,37 +31,15 @@
 
     <!-- Floating Navigation Dots -->
     <nav class="nav-dots" id="navDots" aria-label="Page Navigation">
-        <a href="#page1" class="dot active" data-title="Envelope" data-i18n-title="nav_envelope" title="Page 1: Envelope"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page2" class="dot" data-title="Save The Date" data-i18n-title="nav_std" title="Page 2: Save The Date"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page3" class="dot" data-title="Invitation" data-i18n-title="nav_invitation" title="Page 3: Invitation"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page4" class="dot" data-title="Venue & Time" data-i18n-title="nav_venue" title="Page 4: Venue & Time"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page5" class="dot" data-title="Dress Code" data-i18n-title="nav_dress" title="Page 5: Dress Code"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page6" class="dot" data-title="FAQ" data-i18n-title="nav_faq" title="Page 6: FAQ"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page7" class="dot" data-title="RSVP" data-i18n-title="nav_rsvp" title="Page 7: RSVP"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page2" class="dot active" data-title="Save The Date" data-i18n-title="nav_std" title="Save The Date"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page3" class="dot" data-title="Invitation" data-i18n-title="nav_invitation" title="Invitation"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page4" class="dot" data-title="Venue & Time" data-i18n-title="nav_venue" title="Venue & Time"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page5" class="dot" data-title="Dress Code" data-i18n-title="nav_dress" title="Dress Code"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page6" class="dot" data-title="FAQ" data-i18n-title="nav_faq" title="FAQ"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page7" class="dot" data-title="RSVP" data-i18n-title="nav_rsvp" title="RSVP"><i class="fa-solid fa-paw dot-paw"></i></a>
     </nav>
 
     <div class="pages-container">
-
-        <!-- Page 1: Envelope Opening Video -->
-        <section id="page1" class="page-section section-envelope video-locked">
-            <div class="content-wrapper text-center">
-                <!-- Video Container -->
-				This is a placeholder video.
-                <div class="video-placeholder-card shadow-lg my-4 position-relative">
-                    <video id="envelopeVideo" preload="auto" class="w-100 rounded" style="cursor: pointer;">
-                        <source src="video/intro_scrub.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                
-                <div class="scroll-hint mt-4">
-                    <p class="mb-1 text-uppercase tracking-wide small font-weight-bold text-lightblue">
-                        <i class="fa-solid fa-paw mr-1"></i> <span data-i18n="p1_scroll">Scroll Down to Explore</span> <i class="fa-solid fa-paw ml-1"></i>
-                    </p>
-                    <i class="fa-solid fa-chevron-down bounce"></i>
-                </div>
-            </div>
-        </section>
 
         <!-- Page 2: Cover / Save The Date -->
         <section id="page2" class="page-section section-save-the-date">
@@ -73,6 +51,10 @@
             <img src="images/bb_cake.png" alt="" class="bg-deco bg-deco-p2-cake anim-sway">
             <img src="images/star2.png" alt="" class="bg-deco bg-deco-p2-star2 anim-spin">
             <img src="images/heart2.png" alt="" class="bg-deco bg-deco-p2-heart2 anim-pulse">
+            <img src="images/star2.png" alt="" class="bg-deco bg-deco-p2-mid1 anim-pulse">
+            <img src="images/flower1.png" alt="" class="bg-deco bg-deco-p2-mid2 anim-sway">
+            <img src="images/paw2.png" alt="" class="bg-deco bg-deco-p2-mid3 anim-float">
+            <img src="images/star_borderless_1.png" alt="" class="bg-deco bg-deco-p2-mid4 anim-spin">
 
             <div class="container text-center">
                 <div class="paw-divider">
@@ -101,6 +83,10 @@
             <img src="images/bb_run.png" alt="" class="bg-deco bg-deco-p3-bbrun anim-float">
             <img src="images/paw2.png" alt="" class="bg-deco bg-deco-p3-paw2 anim-sway">
             <img src="images/star3.png" alt="" class="bg-deco bg-deco-p3-star3 anim-pulse">
+            <img src="images/heart1.png" alt="" class="bg-deco bg-deco-p3-mid1 anim-float">
+            <img src="images/star3.png" alt="" class="bg-deco bg-deco-p3-mid2 anim-pulse">
+            <img src="images/flower1.png" alt="" class="bg-deco bg-deco-p3-mid3 anim-sway">
+            <img src="images/paw1.png" alt="" class="bg-deco bg-deco-p3-mid4 anim-spin">
 
             <div class="container text-center">
                 <div class="glass-card invitation-card p-4 p-md-5 mx-auto">
@@ -135,14 +121,15 @@
             <img src="images/bb_wink.png" alt="" class="bg-deco bg-deco-p4-bbwink anim-sway">
             <img src="images/heart1.png" alt="" class="bg-deco bg-deco-p4-heart1 anim-pulse">
             <img src="images/star1.png" alt="" class="bg-deco bg-deco-p4-star1 anim-spin">
+            <img src="images/star2.png" alt="" class="bg-deco bg-deco-p4-mid1 anim-spin">
+            <img src="images/flower2.png" alt="" class="bg-deco bg-deco-p4-mid2 anim-float">
+            <img src="images/paw1.png" alt="" class="bg-deco bg-deco-p4-mid3 anim-sway">
+            <img src="images/heart2.png" alt="" class="bg-deco bg-deco-p4-mid4 anim-pulse">
 
             <div class="container">
-                <div class="d-flex align-items-center justify-content-center mb-2">
-                    <img src="images/nico_hat.png" alt="Nico Hat" class="venue-deco-img mr-2 mr-md-3">
-                    <h2 class="section-title text-center mb-0" data-i18n="p4_title">Venue &amp; Event Details</h2>
-                </div>
-                <div class="paw-divider text-center mb-4">
-                    <i class="fa-solid fa-paw"></i> <i class="fa-solid fa-paw"></i>
+                <h2 class="section-title text-center mb-2" data-i18n="p4_title">Venue &amp; Event Details</h2>
+                <div class="text-center mb-3">
+                    <img src="images/nico_hat.png" alt="Nico Hat" class="venue-deco-img">
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-6 mb-4 mb-md-0">
@@ -183,6 +170,10 @@
             <img src="images/bb_head.png" alt="" class="bg-deco bg-deco-p5-bbhead anim-float">
             <img src="images/flowers.png" alt="" class="bg-deco bg-deco-p5-flowers anim-sway">
             <img src="images/star2.png" alt="" class="bg-deco bg-deco-p5-star2 anim-pulse">
+            <img src="images/flower1.png" alt="" class="bg-deco bg-deco-p5-mid1 anim-sway">
+            <img src="images/star1.png" alt="" class="bg-deco bg-deco-p5-mid2 anim-pulse">
+            <img src="images/heart2.png" alt="" class="bg-deco bg-deco-p5-mid3 anim-float">
+            <img src="images/paw2.png" alt="" class="bg-deco bg-deco-p5-mid4 anim-spin">
 
             <div class="container text-center">
                 <div class="glass-card p-4 p-md-5 mx-auto max-width-700">
@@ -228,6 +219,10 @@
             <img src="images/bb_heart.png" alt="" class="bg-deco bg-deco-p6-bbheart anim-pulse">
             <img src="images/flower1.png" alt="" class="bg-deco bg-deco-p6-flower1 anim-sway">
             <img src="images/star_borderless_1.png" alt="" class="bg-deco bg-deco-p6-starb1 anim-spin">
+            <img src="images/paw1.png" alt="" class="bg-deco bg-deco-p6-mid1 anim-float">
+            <img src="images/star_borderless_2.png" alt="" class="bg-deco bg-deco-p6-mid2 anim-spin">
+            <img src="images/heart1.png" alt="" class="bg-deco bg-deco-p6-mid3 anim-pulse">
+            <img src="images/flower2.png" alt="" class="bg-deco bg-deco-p6-mid4 anim-sway">
 
             <div class="container">
                 <div class="d-flex align-items-center justify-content-center mb-2">
@@ -303,6 +298,10 @@
             <img src="images/bb_wink.png" alt="" class="bg-deco bg-deco-p7-bbwink anim-float">
             <img src="images/flower2.png" alt="" class="bg-deco bg-deco-p7-flower2 anim-pulse">
             <img src="images/star3.png" alt="" class="bg-deco bg-deco-p7-star3 anim-sway">
+            <img src="images/flowers.png" alt="" class="bg-deco bg-deco-p7-mid1 anim-sway">
+            <img src="images/star3.png" alt="" class="bg-deco bg-deco-p7-mid2 anim-pulse">
+            <img src="images/paw2.png" alt="" class="bg-deco bg-deco-p7-mid3 anim-float">
+            <img src="images/heart1.png" alt="" class="bg-deco bg-deco-p7-mid4 anim-spin">
 
             <div class="container">
                 <div class="glass-card rsvp-card p-4 p-md-5 mx-auto max-width-700">
@@ -380,6 +379,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
     <!-- Custom Script -->
-    <script src="script.js"></script>
+    <script src="script.js?v=5"></script>
 </body>
 </html>

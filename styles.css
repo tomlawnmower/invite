@@ -183,19 +183,10 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     padding: 75px 16px 50px 16px;
     box-sizing: border-box;
     border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-    overflow-x: hidden;
+    overflow: visible;
 }
 
 /* Light Blue Section Background Gradients */
-.section-envelope {
-    background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #dbeafe 100%);
-}
-
-#page1.video-locked {
-    touch-action: none !important;
-    overscroll-behavior-y: none !important;
-}
-
 .section-save-the-date {
     background: radial-gradient(circle at center, #f0f9ff 0%, #e0f2fe 100%);
 }
@@ -303,37 +294,6 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 
 .nav-dots .dot:hover::before {
     opacity: 1;
-}
-
-/* Video Placeholder Card */
-.video-placeholder-card {
-    width: 100%;
-    max-width: 650px;
-    margin: 0 auto;
-    border: 2px solid var(--blue-soft);
-    border-radius: 14px;
-    overflow: hidden;
-    background: #000;
-    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.15);
-}
-
-.video-overlay-notice {
-    padding: 20px 15px;
-    background: rgba(255, 255, 255, 0.94);
-    color: var(--text-navy);
-    transition: opacity 0.4s ease;
-}
-
-.bounce {
-    animation: bounce 2s infinite;
-    color: var(--blue-primary);
-    font-size: 1.3rem;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-8px); }
-    60% { transform: translateY(-4px); }
 }
 
 /* Photo Frame */
@@ -617,7 +577,7 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     }
 
     .venue-deco-img {
-        max-width: 60px;
+        max-width: 75px;
     }
 
     .dresscode-deco-img {
@@ -629,45 +589,45 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
    Scroll-Driven Animations (Pages 2 - 7)
    ========================================================================== */
 
-/* Initial hidden state for titles (Pages 2 to 7): 20px drop down */
-.page-section:not(#page1) .section-title,
-.page-section:not(#page1) .section-subtitle,
-.page-section:not(#page1) .wedding-title {
+/* Initial hidden state for titles: 20px drop down */
+.page-section .section-title,
+.page-section .section-subtitle,
+.page-section .wedding-title {
     opacity: 0;
     transform: translateY(-20px);
     transition: opacity 1.1s ease-out, transform 0.8s ease-out;
 }
 
-/* Initial hidden state for body elements (Pages 2 to 7): 20px drop up */
-.page-section:not(#page1) .glass-card,
-.page-section:not(#page1) .photo-frame-wrapper,
-.page-section:not(#page1) .location-brief,
-.page-section:not(#page1) .accordion,
-.page-section:not(#page1) .date-badge,
-.page-section:not(#page1) .invitation-deco-img,
-.page-section:not(#page1) .venue-deco-img,
-.page-section:not(#page1) .dresscode-deco-img {
+/* Initial hidden state for body elements: 20px drop up */
+.page-section .glass-card,
+.page-section .photo-frame-wrapper,
+.page-section .location-brief,
+.page-section .accordion,
+.page-section .date-badge,
+.page-section .invitation-deco-img,
+.page-section .venue-deco-img,
+.page-section .dresscode-deco-img {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1.1s ease-out 0.25s, transform 1.1s ease-out 0.25s;
 }
 
 /* Full opacity settled state when section comes into view */
-.page-section:not(#page1).in-view .section-title,
-.page-section:not(#page1).in-view .section-subtitle,
-.page-section:not(#page1).in-view .wedding-title {
+.page-section.in-view .section-title,
+.page-section.in-view .section-subtitle,
+.page-section.in-view .wedding-title {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
 
-.page-section:not(#page1).in-view .glass-card,
-.page-section:not(#page1).in-view .photo-frame-wrapper,
-.page-section:not(#page1).in-view .location-brief,
-.page-section:not(#page1).in-view .accordion,
-.page-section:not(#page1).in-view .date-badge,
-.page-section:not(#page1).in-view .invitation-deco-img,
-.page-section:not(#page1).in-view .venue-deco-img,
-.page-section:not(#page1).in-view .dresscode-deco-img {
+.page-section.in-view .glass-card,
+.page-section.in-view .photo-frame-wrapper,
+.page-section.in-view .location-brief,
+.page-section.in-view .accordion,
+.page-section.in-view .date-badge,
+.page-section.in-view .invitation-deco-img,
+.page-section.in-view .venue-deco-img,
+.page-section.in-view .dresscode-deco-img {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
@@ -679,7 +639,7 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 /* Ensure section containers position background items cleanly */
 .page-section {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .page-section > .container {
@@ -693,8 +653,7 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     pointer-events: none;
     z-index: 1;
     opacity: 0;
-    transform: translateY(35px) scale(0.8);
-    transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1);
     user-select: none;
     filter: drop-shadow(0 4px 10px rgba(2, 132, 199, 0.12));
 }
@@ -702,7 +661,6 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 /* Entry transition state when section becomes in-view */
 .page-section.in-view .bg-deco {
     opacity: var(--deco-opacity, 0.45);
-    transform: translateY(0) scale(1);
 }
 
 /* Infinite Floating Animations */
@@ -742,7 +700,7 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     100% { transform: rotate(360deg); }
 }
 
-/* Position and size specifics per section asset (40% smaller corner decos + additional assets) */
+/* Position and size specifics per section asset (corner decos + top/bottom inter-page transition assets) */
 
 /* Page 2 Assets */
 .bg-deco-p2-flowers { top: 4%; left: 3%; width: 84px; --deco-opacity: 0.5; }
@@ -752,6 +710,10 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 .bg-deco-p2-cake    { top: 45%; left: 2%; width: 52px; --deco-opacity: 0.4; }
 .bg-deco-p2-star2   { top: 30%; right: 3%; width: 38px; --deco-opacity: 0.45; }
 .bg-deco-p2-heart2  { bottom: 35%; right: 2%; width: 42px; --deco-opacity: 0.35; }
+.bg-deco-p2-mid1    { top: 2%; left: 22%; width: 36px; --deco-opacity: 0.35; }
+.bg-deco-p2-mid2    { bottom: 2%; left: 38%; width: 45px; --deco-opacity: 0.35; }
+.bg-deco-p2-mid3    { top: 3%; left: 78%; width: 42px; --deco-opacity: 0.35; }
+.bg-deco-p2-mid4    { bottom: 3%; left: 62%; width: 38px; --deco-opacity: 0.35; }
 
 /* Page 3 Assets */
 .bg-deco-p3-flower1 { top: 6%; left: 4%; width: 60px; --deco-opacity: 0.45; }
@@ -761,6 +723,10 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 .bg-deco-p3-bbrun   { top: 48%; left: 2%; width: 56px; --deco-opacity: 0.4; }
 .bg-deco-p3-paw2    { top: 42%; right: 3%; width: 45px; --deco-opacity: 0.35; }
 .bg-deco-p3-star3   { bottom: 30%; left: 3%; width: 36px; --deco-opacity: 0.45; }
+.bg-deco-p3-mid1    { top: 2%; left: 24%; width: 40px; --deco-opacity: 0.35; }
+.bg-deco-p3-mid2    { bottom: 2%; left: 36%; width: 36px; --deco-opacity: 0.35; }
+.bg-deco-p3-mid3    { top: 3%; left: 76%; width: 44px; --deco-opacity: 0.35; }
+.bg-deco-p3-mid4    { bottom: 3%; left: 64%; width: 42px; --deco-opacity: 0.35; }
 
 /* Page 4 Assets */
 .bg-deco-p4-paw     { top: 6%; right: 4%; width: 54px; --deco-opacity: 0.35; }
@@ -770,6 +736,10 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 .bg-deco-p4-bbwink  { top: 45%; left: 2%; width: 50px; --deco-opacity: 0.4; }
 .bg-deco-p4-heart1  { top: 50%; right: 3%; width: 44px; --deco-opacity: 0.4; }
 .bg-deco-p4-star1   { bottom: 35%; right: 2%; width: 38px; --deco-opacity: 0.45; }
+.bg-deco-p4-mid1    { top: 2%; left: 20%; width: 36px; --deco-opacity: 0.35; }
+.bg-deco-p4-mid2    { bottom: 2%; left: 40%; width: 46px; --deco-opacity: 0.35; }
+.bg-deco-p4-mid3    { top: 3%; left: 80%; width: 40px; --deco-opacity: 0.35; }
+.bg-deco-p4-mid4    { bottom: 3%; left: 60%; width: 38px; --deco-opacity: 0.35; }
 
 /* Page 5 Assets */
 .bg-deco-p5-starb2  { top: 5%; left: 4%; width: 39px; --deco-opacity: 0.45; }
@@ -779,6 +749,10 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 .bg-deco-p5-bbhead  { top: 48%; left: 2%; width: 52px; --deco-opacity: 0.4; }
 .bg-deco-p5-flowers { top: 42%; right: 2%; width: 72px; --deco-opacity: 0.45; }
 .bg-deco-p5-star2   { bottom: 32%; right: 3%; width: 38px; --deco-opacity: 0.4; }
+.bg-deco-p5-mid1    { top: 2%; left: 22%; width: 44px; --deco-opacity: 0.35; }
+.bg-deco-p5-mid2    { bottom: 2%; left: 38%; width: 36px; --deco-opacity: 0.35; }
+.bg-deco-p5-mid3    { top: 3%; left: 78%; width: 40px; --deco-opacity: 0.35; }
+.bg-deco-p5-mid4    { bottom: 3%; left: 62%; width: 42px; --deco-opacity: 0.35; }
 
 /* Page 6 Assets */
 .bg-deco-p6-flowers { top: 4%; right: 3%; width: 78px; --deco-opacity: 0.45; }
@@ -788,6 +762,10 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 .bg-deco-p6-bbheart { top: 48%; left: 2%; width: 50px; --deco-opacity: 0.4; }
 .bg-deco-p6-flower1 { top: 45%; right: 3%; width: 46px; --deco-opacity: 0.45; }
 .bg-deco-p6-starb1  { bottom: 35%; right: 2%; width: 36px; --deco-opacity: 0.4; }
+.bg-deco-p6-mid1    { top: 2%; left: 20%; width: 42px; --deco-opacity: 0.35; }
+.bg-deco-p6-mid2    { bottom: 2%; left: 42%; width: 36px; --deco-opacity: 0.35; }
+.bg-deco-p6-mid3    { top: 3%; left: 80%; width: 40px; --deco-opacity: 0.35; }
+.bg-deco-p6-mid4    { bottom: 3%; left: 60%; width: 44px; --deco-opacity: 0.35; }
 
 /* Page 7 Assets */
 .bg-deco-p7-heart1  { top: 4%; left: 4%; width: 51px; --deco-opacity: 0.4; }
@@ -797,6 +775,10 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 .bg-deco-p7-bbwink  { top: 48%; left: 2%; width: 50px; --deco-opacity: 0.4; }
 .bg-deco-p7-flower2 { top: 44%; right: 3%; width: 54px; --deco-opacity: 0.45; }
 .bg-deco-p7-star3   { bottom: 32%; right: 2%; width: 38px; --deco-opacity: 0.4; }
+.bg-deco-p7-mid1    { top: 2%; left: 22%; width: 55px; --deco-opacity: 0.35; }
+.bg-deco-p7-mid2    { bottom: 2%; left: 38%; width: 36px; --deco-opacity: 0.35; }
+.bg-deco-p7-mid3    { top: 3%; left: 78%; width: 40px; --deco-opacity: 0.35; }
+.bg-deco-p7-mid4    { bottom: 3%; left: 62%; width: 38px; --deco-opacity: 0.35; }
 
 /* Mobile Scaledown */
 @media (max-width: 575.98px) {
