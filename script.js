@@ -300,4 +300,31 @@ document.addEventListener('DOMContentLoaded', function () {
             alert(mapAlert);
         });
     }
+
+    // 7. Vanilla JS Accordion Toggler for FAQ (replaces jQuery & Bootstrap JS dependencies)
+    const faqButtons = document.querySelectorAll('#weddingFaq [data-toggle="collapse"]');
+    faqButtons.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            const targetEl = document.querySelector(targetId);
+            if (!targetEl) return;
+
+            const isShown = targetEl.classList.contains('show');
+
+            // Close all collapses in FAQ accordion
+            document.querySelectorAll('#weddingFaq .collapse').forEach(c => c.classList.remove('show'));
+            document.querySelectorAll('#weddingFaq [data-toggle="collapse"]').forEach(b => {
+                b.classList.add('collapsed');
+                b.setAttribute('aria-expanded', 'false');
+            });
+
+            // Toggle selected item
+            if (!isShown) {
+                targetEl.classList.add('show');
+                this.classList.remove('collapsed');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
 });
