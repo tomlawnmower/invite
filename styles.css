@@ -270,6 +270,22 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     overflow: visible;
 }
 
+.anim-bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+    60% {
+        transform: translateY(-4px);
+    }
+}
+
 /* Light Blue Section Background Gradients */
 .section-save-the-date {
     background: radial-gradient(circle at center, #f0f9ff 0%, #e0f2fe 100%);

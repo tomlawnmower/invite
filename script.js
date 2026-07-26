@@ -2,7 +2,7 @@
 const translations = {
     'en': {
         // Nav tooltips
-        nav_envelope: 'Envelope',
+        nav_envelope: 'Intro',
         nav_std: 'Save The Date',
         nav_invitation: 'Invitation',
         nav_venue: 'Venue & Time',
@@ -97,7 +97,7 @@ const translations = {
     },
     'zh-tw': {
         // Nav tooltips
-        nav_envelope: '信封',
+        nav_envelope: '開場動畫',
         nav_std: '留唸日期',
         nav_invitation: '誠摯邀請',
         nav_venue: '時間地點',
@@ -278,9 +278,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateAttendanceState() {
         if (!attendanceSelect) return;
         const isDeclining = (attendanceSelect.value === 'no');
-        const otherFieldIds = ['guestCount', 'dietary', 'notes'];
+        const disabledFieldIds = ['guestCount', 'dietary'];
 
-        otherFieldIds.forEach(id => {
+        disabledFieldIds.forEach(id => {
             const field = document.getElementById(id);
             if (field) {
                 field.disabled = isDeclining;
