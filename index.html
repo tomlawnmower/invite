@@ -29,6 +29,22 @@
         <button type="button" id="btnZh" class="lang-btn" onclick="setLanguage('zh-tw')">中文</button>
     </div>
 
+    <!-- Floating Site Menu -->
+    <div class="site-menu-wrapper" id="siteMenuWrapper">
+        <button type="button" id="menuToggleBtn" class="menu-toggle-btn shadow-sm" aria-expanded="false" aria-controls="siteMenuDropdown">
+            <i class="fa-solid fa-bars menu-icon mr-1"></i>
+            <span data-i18n="menu_btn">Menu</span>
+        </button>
+        <div class="site-menu-dropdown shadow" id="siteMenuDropdown">
+            <a href="#page2" class="menu-link" data-i18n="nav_std"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Save The Date</a>
+            <a href="#page3" class="menu-link" data-i18n="nav_invitation"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Invitation</a>
+            <a href="#page4" class="menu-link" data-i18n="nav_venue"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Venue & Time</a>
+            <a href="#page5" class="menu-link" data-i18n="nav_dress"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Dress Code</a>
+            <a href="#page6" class="menu-link" data-i18n="nav_faq"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>FAQ</a>
+            <a href="#page7" class="menu-link" data-i18n="nav_rsvp"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>RSVP</a>
+        </div>
+    </div>
+
     <!-- Floating Navigation Dots -->
     <nav class="nav-dots" id="navDots" aria-label="Page Navigation">
         <a href="#page2" class="dot active" data-title="Save The Date" data-i18n-title="nav_std" title="Save The Date"><i class="fa-solid fa-paw dot-paw"></i></a>
@@ -319,32 +335,27 @@
 
                     <form id="rsvpForm" novalidate>
                         <div class="form-group">
-                            <label for="fullName" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_name">Name</span> <span class="text-lightblue">*</span></label>
-                            <input type="text" class="form-control light-input" id="fullName" placeholder="Your full name" data-i18n-ph="p7_ph_name" required>
+                            <label for="fullName" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_name">Name(s) of Guest(s)</span> <span class="text-lightblue">*</span></label>
+                            <input type="text" class="form-control light-input" id="fullName" placeholder="Name(s) of Guest(s)" data-i18n-ph="p7_ph_name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_email">Email Address</span> <span class="text-lightblue">*</span></label>
-                            <input type="email" class="form-control light-input" id="email" placeholder="name@example.com" data-i18n-ph="p7_ph_email" required>
+                            <label for="attendance" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_attendance">Attendance</span> <span class="text-lightblue">*</span></label>
+                            <select class="form-control light-input" id="attendance" required>
+                                <option value="yes" data-i18n="p7_att_yes">Joyfully Accepts</option>
+                                <option value="no" data-i18n="p7_att_no">Regretfully Declines</option>
+                            </select>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="attendance" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_attendance">Attendance</span> <span class="text-lightblue">*</span></label>
-                                <select class="form-control light-input" id="attendance" required>
-                                    <option value="yes" data-i18n="p7_att_yes">Joyfully Accepts</option>
-                                    <option value="no" data-i18n="p7_att_no">Regretfully Declines</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="guestCount" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_guests">Number of Guests</span> <span class="text-lightblue">*</span></label>
-                                <select class="form-control light-input" id="guestCount" required>
-                                    <option value="1" data-i18n="p7_gst_1">1 (Just me)</option>
-                                    <option value="2" data-i18n="p7_gst_2">2 (Me + Plus 1)</option>
-                                    <option value="3" data-i18n="p7_gst_3">3 Guests</option>
-                                    <option value="4" data-i18n="p7_gst_4">4 Guests</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="guestCount" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_guests">Number of Guests</span> <span class="text-lightblue">*</span></label>
+                            <select class="form-control light-input" id="guestCount" required>
+                                <option value="0" data-i18n="p7_gst_0" hidden disabled>0</option>
+                                <option value="1" data-i18n="p7_gst_1" selected>1 (Just me)</option>
+                                <option value="2" data-i18n="p7_gst_2">2 (Me + Plus 1)</option>
+                                <option value="3" data-i18n="p7_gst_3">3 Guests</option>
+                                <option value="4" data-i18n="p7_gst_4">4 Guests</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -359,7 +370,7 @@
 
                         <div class="form-group">
                             <label for="notes" class="text-dark font-weight-bold" data-i18n="p7_lbl_notes">Special Notes / Messages</label>
-                            <textarea class="form-control light-input" id="notes" rows="3" placeholder="Dietary restrictions, song requests, or messages for the couple" data-i18n-ph="p7_ph_notes"></textarea>
+                            <textarea class="form-control light-input" id="notes" rows="3" placeholder="5 or more guests, dietary restrictions, song requests, or messages for the couple" data-i18n-ph="p7_ph_notes"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-sky-blue btn-block btn-lg mt-4 shadow">

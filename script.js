@@ -9,6 +9,7 @@ const translations = {
         nav_dress: 'Dress Code',
         nav_faq: 'FAQ',
         nav_rsvp: 'RSVP',
+        menu_btn: 'Menu',
 
         // Page 1
         p1_subtitle: 'An Exclusive Invitation',
@@ -71,14 +72,15 @@ const translations = {
         p7_title: 'RSVP',
         p7_subtitle: 'Please let us know if you can attend!',
         p7_alert: 'Thank you! Your RSVP has been received with joy!',
-        p7_lbl_name: 'Name',
-        p7_ph_name: 'Your full name',
+        p7_lbl_name: 'Name(s) of Guest(s)',
+        p7_ph_name: 'Name(s) of Guest(s)',
         p7_lbl_email: 'Email Address',
         p7_ph_email: 'name@example.com',
         p7_lbl_attendance: 'Attendance',
         p7_att_yes: 'Joyfully Accepts',
         p7_att_no: 'Regretfully Declines',
         p7_lbl_guests: 'Number of Guests',
+        p7_gst_0: '0',
         p7_gst_1: '1 (Just me)',
         p7_gst_2: '2 (Me + Plus 1)',
         p7_gst_3: '3 Guests',
@@ -89,7 +91,7 @@ const translations = {
         p7_diet_vgn: 'Vegan Option',
         p7_diet_gf: 'Gluten-Free',
         p7_lbl_notes: 'Special Notes / Messages',
-        p7_ph_notes: 'Dietary restrictions, song requests, or messages for the couple',
+        p7_ph_notes: '5 or more guests, dietary restrictions, song requests, or messages for the couple',
         p7_submit: 'Submit RSVP',
         p7_validation_err: 'Please fill out all required fields (*).'
     },
@@ -102,6 +104,7 @@ const translations = {
         nav_dress: '著裝要求',
         nav_faq: '常見問題',
         nav_rsvp: '出席回覆',
+        menu_btn: '選單',
 
         // Page 1
         p1_subtitle: '誠摯邀請',
@@ -164,14 +167,15 @@ const translations = {
         p7_title: '出席回覆',
         p7_subtitle: '請於 2026年10月15日前回覆，方便我們為您準備座位！',
         p7_alert: '感謝您的回覆！我們懷著無比喜悅期待您的光臨！',
-        p7_lbl_name: '姓名',
-        p7_ph_name: '請輸入您的全名',
+        p7_lbl_name: '賓客姓名',
+        p7_ph_name: '請輸入賓客姓名',
         p7_lbl_email: '電子郵件',
         p7_ph_email: 'name@example.com',
         p7_lbl_attendance: '出席狀態',
         p7_att_yes: '欣然出席',
         p7_att_no: '遺憾無法出席',
         p7_lbl_guests: '出席人數',
+        p7_gst_0: '0',
         p7_gst_1: '1位 (本人)',
         p7_gst_2: '2位 (本人 + 攜伴)',
         p7_gst_3: '3位',
@@ -182,7 +186,7 @@ const translations = {
         p7_diet_vgn: '全素套餐 (Vegan)',
         p7_diet_gf: '無麩質飲食 (Gluten-Free)',
         p7_lbl_notes: '備註 / 給新人的祝福',
-        p7_ph_notes: '飲食過敏需求、點歌或給新人的溫馨祝福',
+        p7_ph_notes: '5位或以上賓客、飲食過敏需求、點歌或給新人的溫馨祝福',
         p7_submit: 'Submit RSVP',
         p7_validation_err: '請填寫所有必填欄位 (*)。'
     }
@@ -265,18 +269,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
     sections.forEach(section => observer.observe(section));
 
-    // 5. RSVP Form Submission Handler
+    // 5. RSVP Form Submission & Attendance Handler
     const rsvpForm = document.getElementById('rsvpForm');
     const rsvpAlert = document.getElementById('rsvpAlert');
+    const attendanceSelect = document.getElementById('attendance');
+    let previousGuestCount = '1';
+
+    function updateAttendanceState() {
+        if (!attendanceSelect) return;
+        const isDeclining = (attendanceSelect.value === 'no');
+        const otherFieldIds = ['guestCount', 'dietary', 'notes'];
+
+        otherFieldIds.forEach(id => {
+            const field = document.getElementById(id);
+            if (field) {
+                field.disabled = isDeclining;
+            }
+        });
+
+        const guestCountSelect = document.getElementById('guestCount');
+        if (guestCountSelect) {
+            if (isDeclining) {
+                if (guestCountSelect.value !== '0') {
+                    previousGuestCount = guestCountSelect.value;
+                }
+                guestCountSelect.value = '0';
+            } else {
+                if (guestCountSelect.value === '0') {
+                    guestCountSelect.value = previousGuestCount || '1';
+                }
+            }
+        }
+    }
+
+    if (attendanceSelect) {
+        attendanceSelect.addEventListener('change', updateAttendanceState);
+        updateAttendanceState();
+    }
 
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             const fullName = document.getElementById('fullName').value.trim();
-            const email = document.getElementById('email').value.trim();
 
-            if (!fullName || !email) {
+            if (!fullName) {
                 const errText = translations[currentLang].p7_validation_err;
                 alert(errText);
                 return;
@@ -288,6 +325,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             rsvpForm.reset();
+            previousGuestCount = '1';
+            updateAttendanceState();
         });
     }
 
@@ -327,4 +366,51 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // 8. Floating Site Menu Toggle & Click Outside Handler
+    const menuWrapper = document.getElementById('siteMenuWrapper');
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const siteMenuLinks = document.querySelectorAll('.site-menu-dropdown .menu-link');
+
+    if (menuToggleBtn && menuWrapper) {
+        menuToggleBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isOpen = menuWrapper.classList.toggle('open');
+            menuToggleBtn.setAttribute('aria-expanded', isOpen);
+            const icon = menuToggleBtn.querySelector('.menu-icon');
+            if (icon) {
+                if (isOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        siteMenuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                menuWrapper.classList.remove('open');
+                menuToggleBtn.setAttribute('aria-expanded', 'false');
+                const icon = menuToggleBtn.querySelector('.menu-icon');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!menuWrapper.contains(e.target)) {
+                menuWrapper.classList.remove('open');
+                menuToggleBtn.setAttribute('aria-expanded', 'false');
+                const icon = menuToggleBtn.querySelector('.menu-icon');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    }
 });

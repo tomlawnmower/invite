@@ -79,6 +79,90 @@ html, body {
     font-size: 0.75rem;
 }
 
+/* Floating Site Menu (just below language switcher) */
+.site-menu-wrapper {
+    position: fixed;
+    top: 54px;
+    left: 14px;
+    z-index: 1050;
+}
+
+.menu-toggle-btn {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--blue-soft);
+    border-radius: 20px;
+    padding: 5px 14px;
+    color: var(--text-navy);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+.menu-toggle-btn:hover,
+.site-menu-wrapper.open .menu-toggle-btn {
+    background: var(--blue-primary);
+    color: #ffffff;
+    border-color: var(--blue-primary);
+}
+
+.menu-toggle-btn:focus {
+    outline: none;
+}
+
+.site-menu-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 175px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--blue-soft);
+    border-radius: 16px;
+    padding: 8px 0;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);
+    transform-origin: top left;
+    animation: menuFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-menu-wrapper.open .site-menu-dropdown {
+    display: flex;
+}
+
+@keyframes menuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.site-menu-dropdown .menu-link {
+    padding: 8px 16px;
+    color: var(--text-navy);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.site-menu-dropdown .menu-link:hover {
+    background-color: var(--bg-light-1);
+    color: var(--blue-primary);
+    padding-left: 20px;
+}
+
 /* Fluid Typography */
 h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     font-family: var(--font-heading);
@@ -457,16 +541,49 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     border: 2px solid var(--blue-soft);
     color: var(--text-navy) !important;
     border-radius: 10px;
-    padding: 10px 12px;
+    padding: 10px 14px;
     font-size: 1rem;
     font-weight: 500;
     width: 100%;
+    height: auto !important;
+    min-height: 48px;
+    line-height: 1.4;
+}
+
+select.light-input {
+    padding-right: 38px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+select.light-input option {
+    background: #ffffff;
+    color: var(--text-navy);
+    padding: 10px;
+}
+
+select.light-input option[hidden] {
+    display: none;
 }
 
 .light-input:focus {
     background: #ffffff;
     border-color: var(--blue-primary);
     box-shadow: 0 0 8px rgba(2, 132, 199, 0.25);
+}
+
+.light-input:disabled {
+    background-color: #f1f5f9 !important;
+    color: #94a3b8 !important;
+    border-color: #cbd5e1 !important;
+    cursor: not-allowed;
+    opacity: 0.65;
 }
 
 .btn-sky-blue {
@@ -564,6 +681,16 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
         padding: 2px 6px;
     }
 
+    .site-menu-wrapper {
+        top: 42px;
+        left: 10px;
+    }
+
+    .menu-toggle-btn {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+    }
+
     .rsvp-deco-img {
         max-width: 100px;
     }
@@ -635,8 +762,8 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 }
 
 /* ==========================================================================
-   Background Decorative Floating Assets & Animations
-   ========================================================================== */
+    Background Decorative Floating Assets & Animations
+    ========================================================================== */
 
 /* Ensure section containers position background items cleanly */
 .page-section {
