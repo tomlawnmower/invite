@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Alice & Bob's Wedding | Envelope Opening</title>
     
     <!-- Google Fonts: Playfair Display, Noto Serif TC & Quicksand -->
@@ -282,7 +283,7 @@
             }
 
             // Automatically navigate to invitation.html when envelope is fully opened
-            if (progress >= 0.95 && !autoRedirected) {
+            if (progress >= 0.6 && !autoRedirected) {
                 autoRedirected = true;
                 setTimeout(() => {
                     window.location.href = 'invitation.html';
@@ -295,7 +296,7 @@
             isOpening = true;
 
             const startTime = performance.now();
-            const duration = 1200; // 1.2s smooth slide open animation
+            const duration = 4000; // slower for smooth slide open animation
             const startScroll = window.scrollY;
             const totalScroll = Math.max(1, scrollContainer.offsetHeight - window.innerHeight);
 

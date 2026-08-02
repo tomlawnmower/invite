@@ -307,26 +307,99 @@ document.addEventListener('DOMContentLoaded', function () {
         updateAttendanceState();
     }
 
+    // Google Form Integration Constants
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScPbD6UodpQwa3F_IfahJ75zM4M-PefpCZgp-HKwJBxUNEsgw/formResponse';
+    const GOOGLE_ENTRY_IDS = {
+        fullName: 'entry.1498135098',
+        attendance: 'entry.877086558',
+        guestCount: 'entry.1424661284',
+        dietary: 'entry.2606285',
+        notes: 'entry.2069830961'
+    };
+
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function (e) {
             e.preventDefault();
+            console.log('[RSVP] Submit button clicked');
 
-            const fullName = document.getElementById('fullName').value.trim();
+            const fullNameInput = document.getElementById('fullName');
+            const fullName = fullNameInput ? fullNameInput.value.trim() : '';
 
             if (!fullName) {
+                console.warn('[RSVP] Full Name is empty! Validation failed.');
                 const errText = translations[currentLang].p7_validation_err;
                 alert(errText);
                 return;
             }
 
-            if (rsvpAlert) {
-                rsvpAlert.classList.remove('d-none');
-                rsvpAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.disabled = true;
+
+            const guestCountSelect = document.getElementById('guestCount');
+            const dietarySelect = document.getElementById('dietary');
+            const notesInput = document.getElementById('notes');
+
+            // Map website values to exact strings expected by Google Forms
+            let attendanceVal = "Yes,  I'll be there";
+            if (attendanceSelect && attendanceSelect.value === 'no') {
+                attendanceVal = "Sorry, can't make it";
             }
 
-            rsvpForm.reset();
-            previousGuestCount = '1';
-            updateAttendanceState();
+            const guestCountVal = (attendanceSelect && attendanceSelect.value === 'no') 
+                ? '0' 
+                : (guestCountSelect ? guestCountSelect.value : '1');
+
+            let dietaryVal = '';
+            if (attendanceSelect && attendanceSelect.value !== 'no' && dietarySelect) {
+                const dietMap = {
+                    'standard': 'Standard Menu',
+                    'vegetarian': 'Vegetarian',
+                    'vegan': 'Vegan',
+                    'gluten-free': 'Gluten free'
+                };
+                dietaryVal = dietMap[dietarySelect.value] || 'Standard Menu';
+            }
+
+            const notesVal = notesInput ? notesInput.value.trim() : '';
+
+            const formData = new URLSearchParams();
+            formData.append(GOOGLE_ENTRY_IDS.fullName, fullName);
+            formData.append(GOOGLE_ENTRY_IDS.attendance, attendanceVal);
+            if (guestCountVal && guestCountVal !== '0') {
+                formData.append(GOOGLE_ENTRY_IDS.guestCount, guestCountVal);
+            }
+            if (dietaryVal) {
+                formData.append(GOOGLE_ENTRY_IDS.dietary, dietaryVal);
+            }
+            if (notesVal) {
+                formData.append(GOOGLE_ENTRY_IDS.notes, notesVal);
+            }
+
+            console.log('[RSVP] Sending POST request to Google Form...');
+            console.log('[RSVP] Endpoint:', GOOGLE_FORM_URL);
+            console.log('[RSVP] Payload:', formData.toString());
+
+            fetch(GOOGLE_FORM_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                console.log('[RSVP] Google Form submission request sent successfully!');
+                if (rsvpAlert) {
+                    rsvpAlert.classList.remove('d-none');
+                    rsvpAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+                rsvpForm.reset();
+                previousGuestCount = '1';
+                updateAttendanceState();
+            }).catch((err) => {
+                console.error('[RSVP] Error submitting RSVP:', err);
+                if (rsvpAlert) {
+                    rsvpAlert.classList.remove('d-none');
+                }
+            }).finally(() => {
+                if (submitBtn) submitBtn.disabled = false;
+            });
         });
     }
 
