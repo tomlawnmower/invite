@@ -13,16 +13,16 @@ const translations = {
 
         // Page 1
         p1_subtitle: 'An Exclusive Invitation',
-        p1_title: 'Alice & Bob',
+        p1_title: 'Pin-Chun & Thomas',
         p1_video_notice: 'Envelope Opening Video',
         p1_video_sub: '(Click or scroll to play)',
         p1_scroll: 'Scroll Down to Explore',
 
         // Page 2
         p2_subtitle: 'Save The Date',
-        p2_title: "Alice & Bob's Wedding",
-        p2_date: 'November 11, 2026',
-        p2_location: 'San Francisco, California',
+        p2_title: "Pin-Chun & Thomas's Wedding",
+        p2_date: 'December 12, 2026',
+        p2_location: 'Taipei',
 
         // Page 3
         p3_subtitle: 'Together With Their Families',
@@ -33,22 +33,30 @@ const translations = {
         p4_title: 'Venue & Event Details',
         p4_schedule_title: 'Date & Schedule',
         p4_date_lbl: 'Date:',
-        p4_date_val: 'Wednesday, November 11, 2026',
+        p4_date_val: 'Saturday, December 12, 2026',
         p4_arrival_lbl: 'Guest Arrival:',
-        p4_arrival_val: 'Please arrive at 4:00 PM',
-        p4_ceremony_lbl: 'Ceremony Begins:',
-        p4_ceremony_val: '4:30 PM',
-        p4_reception_lbl: 'Reception & Dinner:',
-        p4_reception_val: '6:00 PM onwards',
+        p4_arrival_val: '4:30 PM',
+        p4_ceremony_lbl: 'Wedding Ceremony:',
+        p4_ceremony_val: '4:45 PM',
+        p4_cocktail_lbl: 'Cocktail Hour & Candy Bar:',
+        p4_cocktail_val: '5:30 PM (Reception opens)',
+        p4_reception_lbl: 'Reception Begins:',
+        p4_reception_val: '6:00 PM',
         p4_location_title: 'Location & Parking',
         p4_venue_lbl: 'Venue:',
-        p4_venue_val: 'Grand Estate Manor',
+        p4_venue_val: 'Mandarin Oriental, 8F, Taipei',
         p4_addr_lbl: 'Address:',
-        p4_addr_val: '123 Main Street',
+        p4_addr_val: 'No. 158 Dunhua North Road, Taipei, 10548',
         p4_parking_lbl: 'Parking Info:',
         p4_parking_val: 'Free parking available on-site.',
-        p4_map_btn: 'Google Maps Link (TBD)',
-        p4_map_alert: 'Google Maps link is TBD!',
+        p4_map_btn: 'Open Google Maps',
+        p4_map_title: 'Building Map:',
+        p4_map_thumb_hint: 'Click map to expand',
+        p4_cal_btn: 'Add to Calendar',
+        p4_cal_google: 'Google Calendar',
+        p4_cal_apple: 'Apple Calendar',
+        p4_cal_outlook: 'Outlook Calendar',
+        p4_cal_ics: 'Download .ICS File',
 
         // Page 5
         p5_subtitle: 'Dress Code',
@@ -64,9 +72,9 @@ const translations = {
         p6_q1: 'Q: Can I bring a plus 1?',
         p6_a1: 'A: Yes, you can bring a plus 1! Please use the RSVP form on Page 7 to indicate the number of guests.',
         p6_q2: 'Q: What time should I arrive?',
-        p6_a2: 'A: Please plan to arrive by 4:00 PM so everyone is seated before the ceremony starts at 4:30 PM.',
+        p6_a2: 'A: Please plan to arrive at 4:30 PM so everyone is seated before the ceremony starts at 4:45 PM.',
         p6_q3: 'Q: Is there free parking?',
-        p6_a3: 'A: Yes! On-site free parking is provided at 123 Main Street.',
+        p6_a3: 'A: Yes! On-site free parking is provided at No. 158 Dunhua North Road, Taipei, 10548.',
 
         // Page 7
         p7_title: 'RSVP',
@@ -108,16 +116,16 @@ const translations = {
 
         // Page 1
         p1_subtitle: '誠摯邀請',
-        p1_title: 'Alice 與 Bob 的婚禮',
+        p1_title: 'Pin-Chun 與 Thomas 的婚禮',
         p1_video_notice: '開啟信封影片',
         p1_video_sub: '(點擊或滾動即可播放)',
         p1_scroll: '向下滾動探索',
 
         // Page 2
         p2_subtitle: '請留下這個日期',
-        p2_title: 'Alice 與 Bob 的婚禮',
-        p2_date: '2026年11月11日',
-        p2_location: '美國加州舊金山',
+        p2_title: 'Pin-Chun 與 Thomas 的婚禮',
+        p2_date: '2026年12月12日',
+        p2_location: '台北',
 
         // Page 3
         p3_subtitle: '在雙方家長與親友的祝福下',
@@ -128,22 +136,30 @@ const translations = {
         p4_title: '宴會時間與地點',
         p4_schedule_title: '日期與行程安排',
         p4_date_lbl: '日期：',
-        p4_date_val: '2026年11月11日（星期三）',
+        p4_date_val: '2026年12月12日（星期六）',
         p4_arrival_lbl: '賓客入場：',
-        p4_arrival_val: '請於下午 4:00 前抵達',
+        p4_arrival_val: '下午 4:30',
         p4_ceremony_lbl: '證婚儀式：',
-        p4_ceremony_val: '下午 4:30 正式開始',
-        p4_reception_lbl: '婚宴盛宴：',
-        p4_reception_val: '晚間 6:00 開始',
+        p4_ceremony_val: '下午 4:45',
+        p4_cocktail_lbl: '迎賓雞尾酒與糖果吧：',
+        p4_cocktail_val: '下午 5:30（宴會廳開放）',
+        p4_reception_lbl: '婚宴開始：',
+        p4_reception_val: '晚間 6:00',
         p4_location_title: '地點與停車資訊',
         p4_venue_lbl: '婚宴會館：',
-        p4_venue_val: 'Grand Estate Manor 莊園大飯店',
+        p4_venue_val: '台北文華東方酒店 8樓',
         p4_addr_lbl: '地址：',
-        p4_addr_val: '123 Main Street, San Francisco',
+        p4_addr_val: '敦化北路158號, 台北, 10548',
         p4_parking_lbl: '停車資訊：',
         p4_parking_val: '現場提供免費專用停車位。',
-        p4_map_btn: 'Google 地圖連結 (待定)',
-        p4_map_alert: 'Google 地圖連結目前待定中！',
+        p4_map_btn: '開啟 Google 地圖',
+        p4_map_title: '會館平面地圖：',
+        p4_map_thumb_hint: '點擊放大會館地圖',
+        p4_cal_btn: '加入行事曆',
+        p4_cal_google: 'Google 行事曆',
+        p4_cal_apple: 'Apple 行事曆',
+        p4_cal_outlook: 'Outlook 行事曆',
+        p4_cal_ics: '下載 .ICS 檔案',
 
         // Page 5
         p5_subtitle: '著裝要求',
@@ -159,9 +175,9 @@ const translations = {
         p6_q1: '問：我可以攜帶伴侶（Plus 1）嗎？',
         p6_a1: '答：當然可以！請於第 7 頁的回覆表單中註明出席總人數。',
         p6_q2: '問：建議幾點到達現場？',
-        p6_a2: '答：請於下午 4:00 前抵達，以便在 4:30 證婚儀式開始前順利入座。',
+        p6_a2: '答：請於下午 4:30 前抵達，以便在 4:45 證婚儀式開始前順利入座。',
         p6_q3: '問：現場是否有免費停車場？',
-        p6_a3: '答：有的！宴會會館現場提供免費專屬停車位。',
+        p6_a3: '答：有的！飯店現場提供免費專屬停車位（敦化北路158號）。',
 
         // Page 7
         p7_title: '出席回覆',
@@ -187,7 +203,7 @@ const translations = {
         p7_diet_gf: '無麩質飲食 (Gluten-Free)',
         p7_lbl_notes: '備註 / 給新人的祝福',
         p7_ph_notes: '5位或以上賓客、飲食過敏需求、點歌或給新人的溫馨祝福',
-        p7_submit: 'Submit RSVP',
+        p7_submit: '送出出席回覆',
         p7_validation_err: '請填寫所有必填欄位 (*)。'
     }
 };
@@ -403,13 +419,153 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 6. Map button listener
-    const mapBtn = document.getElementById('mapBtn');
-    if (mapBtn) {
-        mapBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const mapAlert = translations[currentLang].p4_map_alert;
-            alert(mapAlert);
+    // 6. Map Thumbnail Lightbox Modal Handler
+    const mapThumbBtn = document.getElementById('mapThumbBtn');
+    const mapModal = document.getElementById('mapModal');
+    const closeMapModalBtn = document.getElementById('closeMapModalBtn');
+
+    function openMapModal() {
+        if (mapModal) {
+            mapModal.classList.add('open');
+            mapModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeMapModal() {
+        if (mapModal) {
+            mapModal.classList.remove('open');
+            mapModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (mapThumbBtn) {
+        mapThumbBtn.addEventListener('click', openMapModal);
+        mapThumbBtn.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openMapModal();
+            }
+        });
+    }
+
+    if (closeMapModalBtn) {
+        closeMapModalBtn.addEventListener('click', closeMapModal);
+    }
+
+    if (mapModal) {
+        mapModal.addEventListener('click', function (e) {
+            if (e.target === mapModal) {
+                closeMapModal();
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && mapModal.classList.contains('open')) {
+                closeMapModal();
+            }
+        });
+    }
+
+    // Add to Calendar Dropdown & Links Handler
+    const calendarDropdownWrapper = document.getElementById('calendarDropdownWrapper');
+    const calendarBtn = document.getElementById('calendarBtn');
+    const calGoogle = document.getElementById('calGoogle');
+    const calApple = document.getElementById('calApple');
+    const calOutlook = document.getElementById('calOutlook');
+    const calIcs = document.getElementById('calIcs');
+
+    const calEvent = {
+        title: "Pin-Chun & Thomas's Wedding",
+        location: "Mandarin Oriental, 8F, No. 158 Dunhua North Road, Taipei, 10548",
+        details: "Official Wedding Invitation for Pin-Chun & Thomas.\n\nSchedule:\n4:30 PM Guest Arrival\n4:45 PM Wedding Ceremony\n5:30 PM Cocktail Hour & Candy Bar\n6:00 PM Reception Begins",
+        startUtc: "20261212T083000Z",
+        endUtc: "20261212T133000Z",
+        startIso: "2026-12-12T08:30:00Z",
+        endIso: "2026-12-12T13:30:00Z"
+    };
+
+    if (calGoogle) {
+        const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+            `&text=${encodeURIComponent(calEvent.title)}` +
+            `&dates=${calEvent.startUtc}/${calEvent.endUtc}` +
+            `&details=${encodeURIComponent(calEvent.details)}` +
+            `&location=${encodeURIComponent(calEvent.location)}`;
+        calGoogle.href = googleUrl;
+    }
+
+    if (calOutlook) {
+        const outlookUrl = `https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent` +
+            `&subject=${encodeURIComponent(calEvent.title)}` +
+            `&startdt=${calEvent.startIso}` +
+            `&enddt=${calEvent.endIso}` +
+            `&location=${encodeURIComponent(calEvent.location)}` +
+            `&body=${encodeURIComponent(calEvent.details)}`;
+        calOutlook.href = outlookUrl;
+    }
+
+    function generateIcsBlobUrl() {
+        const icsContent = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'PRODID:-//Pin-Chun & Thomas Wedding//EN',
+            'CALSCALE:GREGORIAN',
+            'METHOD:PUBLISH',
+            'BEGIN:VEVENT',
+            'UID:wedding-pin-chun-thomas-20261212@invitation',
+            `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+            `DTSTART:${calEvent.startUtc}`,
+            `DTEND:${calEvent.endUtc}`,
+            `SUMMARY:${calEvent.title}`,
+            `DESCRIPTION:${calEvent.details.replace(/\n/g, '\\n')}`,
+            `LOCATION:${calEvent.location}`,
+            'STATUS:CONFIRMED',
+            'END:VEVENT',
+            'END:VCALENDAR'
+        ].join('\r\n');
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        return URL.createObjectURL(blob);
+    }
+
+    function downloadIcsFile(e) {
+        if (e) e.preventDefault();
+        const url = generateIcsBlobUrl();
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'pin-chun-and-thomas-wedding.ics';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 200);
+    }
+
+    if (calApple) {
+        calApple.addEventListener('click', downloadIcsFile);
+    }
+    if (calIcs) {
+        calIcs.addEventListener('click', downloadIcsFile);
+    }
+
+    if (calendarBtn && calendarDropdownWrapper) {
+        calendarBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isOpen = calendarDropdownWrapper.classList.toggle('open');
+            calendarBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!calendarDropdownWrapper.contains(e.target)) {
+                calendarDropdownWrapper.classList.remove('open');
+                calendarBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && calendarDropdownWrapper.classList.contains('open')) {
+                calendarDropdownWrapper.classList.remove('open');
+                calendarBtn.setAttribute('aria-expanded', 'false');
+            }
         });
     }
 

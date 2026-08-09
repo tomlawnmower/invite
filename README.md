@@ -1,4 +1,4 @@
-# 🐾 Alice & Bob's Wedding Invitation
+# 🐾 Pin-Chun & Thomas's Wedding Invitation
 
 A responsive, mobile-first single-page wedding invitation web application designed for deployment on **GitHub Pages**. Features a light-blue theme, custom character artwork, dual-language support (**English** & **Traditional Chinese**), floating background decorations, and a complete RSVP form.
 
