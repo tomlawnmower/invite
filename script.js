@@ -73,7 +73,7 @@ const translations = {
 
         // Page 7
         p7_title: 'RSVP',
-        p7_subtitle: 'Please let us know if you can attend!',
+        p7_subtitle: 'Please RSVP by September 15, if you need to change anything later, contact us at anytime!',
         p7_alert: 'Thank you! Your RSVP has been received with joy!',
         p7_lbl_name: 'Full Name',
         p7_ph_name: 'Your full name',
