@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,9 +25,9 @@
 
     <!-- Floating Language Switcher Bar -->
     <div class="language-switcher shadow-sm" aria-label="Language Selector">
-        <button type="button" id="btnEn" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button type="button" id="btnEn" class="lang-btn" onclick="setLanguage('en')">EN</button>
         <span class="lang-divider">|</span>
-        <button type="button" id="btnZh" class="lang-btn" onclick="setLanguage('zh-tw')">中文</button>
+        <button type="button" id="btnZh" class="lang-btn active" onclick="setLanguage('zh-tw')">中文</button>
     </div>
 
     <!-- Floating Site Menu -->
@@ -37,25 +37,23 @@
             <span data-i18n="menu_btn">Menu</span>
         </button>
         <div class="site-menu-dropdown shadow" id="siteMenuDropdown">
-            <a href="index.html" class="menu-link" data-i18n="nav_envelope"><i class="fa-solid fa-envelope mr-2 text-lightblue"></i>Intro</a>
-            <a href="#page2" class="menu-link" data-i18n="nav_std"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Save The Date</a>
-            <a href="#page3" class="menu-link" data-i18n="nav_invitation"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Invitation</a>
-            <a href="#page4" class="menu-link" data-i18n="nav_venue"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Venue & Time</a>
-            <a href="#page5" class="menu-link" data-i18n="nav_dress"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Dress Code</a>
-            <a href="#page6" class="menu-link" data-i18n="nav_faq"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>FAQ</a>
-            <a href="#page7" class="menu-link" data-i18n="nav_rsvp"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>RSVP</a>
+            <a href="#page2" class="menu-link" data-i18n="nav_std"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>Save the Date</a>
+            <a href="#page3" class="menu-link" data-i18n="nav_invitation"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>婚禮邀請</a>
+            <a href="#page4" class="menu-link" data-i18n="nav_venue"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>婚禮資訊</a>
+            <a href="#page5" class="menu-link" data-i18n="nav_dress"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>服裝規範</a>
+            <a href="#page6" class="menu-link" data-i18n="nav_faq"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>常見問題</a>
+            <a href="#page7" class="menu-link" data-i18n="nav_rsvp"><i class="fa-solid fa-paw mr-2 text-lightblue"></i>出席回覆</a>
         </div>
     </div>
 
     <!-- Floating Navigation Dots -->
     <nav class="nav-dots" id="navDots" aria-label="Page Navigation">
-        <a href="index.html" class="dot" data-title="Intro" data-i18n-title="nav_envelope" title="Intro"><i class="fa-solid fa-envelope dot-paw"></i></a>
-        <a href="#page2" class="dot active" data-title="Save The Date" data-i18n-title="nav_std" title="Save The Date"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page3" class="dot" data-title="Invitation" data-i18n-title="nav_invitation" title="Invitation"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page4" class="dot" data-title="Venue & Time" data-i18n-title="nav_venue" title="Venue & Time"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page5" class="dot" data-title="Dress Code" data-i18n-title="nav_dress" title="Dress Code"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page6" class="dot" data-title="FAQ" data-i18n-title="nav_faq" title="FAQ"><i class="fa-solid fa-paw dot-paw"></i></a>
-        <a href="#page7" class="dot" data-title="RSVP" data-i18n-title="nav_rsvp" title="RSVP"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page2" class="dot active" data-title="Save the Date" data-i18n-title="nav_std" title="Save the Date"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page3" class="dot" data-title="婚禮邀請" data-i18n-title="nav_invitation" title="婚禮邀請"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page4" class="dot" data-title="婚禮資訊" data-i18n-title="nav_venue" title="婚禮資訊"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page5" class="dot" data-title="服裝規範" data-i18n-title="nav_dress" title="服裝規範"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page6" class="dot" data-title="常見問題" data-i18n-title="nav_faq" title="常見問題"><i class="fa-solid fa-paw dot-paw"></i></a>
+        <a href="#page7" class="dot" data-title="出席回覆" data-i18n-title="nav_rsvp" title="出席回覆"><i class="fa-solid fa-paw dot-paw"></i></a>
     </nav>
 
     <div class="pages-container">
@@ -93,7 +91,7 @@
                 <div class="photo-frame-wrapper mx-auto mt-4 mb-3">
                     <img src="images/img1.png" alt="Pin-Chun &amp; Thomas's Wedding Photo" class="img-fluid photo-frame">
                 </div>
-                <p class="location-brief text-muted font-weight-bold"><i class="fa-solid fa-location-dot mr-1"></i> <span data-i18n="p2_location">Taipei</span></p>
+                <p class="location-brief text-muted font-weight-bold"><i class="fa-solid fa-location-dot mr-1"></i> <span data-i18n="p2_location">Mandarin Oriental, Taipei</span></p>
             </div>
         </section>
 
@@ -173,24 +171,24 @@
                             <hr class="blue-hr">
                             <div class="schedule-list">
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_date_lbl">Date:</span>
-                                    <span class="detail-val" data-i18n="p4_date_val">Saturday, December 12, 2026</span>
+                                    <span class="detail-label" data-i18n="p4_date_lbl">日期：</span>
+                                    <span class="detail-val" data-i18n="p4_date_val">2026年12月12日（星期六）</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_arrival_lbl">Guest Arrival:</span>
+                                    <span class="detail-label" data-i18n="p4_arrival_lbl">證婚賓客入場（請直接入場就座）：</span>
                                     <span class="detail-val" data-i18n="p4_arrival_val">4:30 PM</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_ceremony_lbl">Wedding Ceremony:</span>
+                                    <span class="detail-label" data-i18n="p4_ceremony_lbl">證婚儀式：</span>
                                     <span class="detail-val" data-i18n="p4_ceremony_val">4:45 PM</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_cocktail_lbl">Cocktail Hour &amp; Candy Bar:</span>
-                                    <span class="detail-val" data-i18n="p4_cocktail_val">5:30 PM (Reception opens)</span>
+                                    <span class="detail-label" data-i18n="p4_cocktail_lbl">簽到禮金收受迎賓酒會Candy Bar：</span>
+                                    <span class="detail-val" data-i18n="p4_cocktail_val">5:30 PM</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_reception_lbl">Reception Begins:</span>
-                                    <span class="detail-val" data-i18n="p4_reception_val">6:00 PM</span>
+                                    <span class="detail-label" data-i18n="p4_reception_lbl">婚宴開始：</span>
+                                    <span class="detail-val" data-i18n="p4_reception_val">6 PM</span>
                                 </div>
                             </div>
 
@@ -224,12 +222,12 @@
                             <hr class="blue-hr">
                             <div class="location-list mb-3">
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_venue_lbl">Venue:</span>
-                                    <span class="detail-val" data-i18n="p4_venue_val">Mandarin Oriental, 8F, Taipei</span>
+                                    <span class="detail-label" data-i18n="p4_venue_lbl">宴會地點：</span>
+                                    <span class="detail-val" data-i18n="p4_venue_val">台北文華東方酒店 8 樓｜文華閣</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_addr_lbl">Address:</span>
-                                    <span class="detail-val" data-i18n="p4_addr_val">No. 158 Dunhua North Road, Taipei, 10548</span>
+                                    <span class="detail-label" data-i18n="p4_addr_lbl">地址：</span>
+                                    <span class="detail-val" data-i18n="p4_addr_val">台北市松山區敦化北路 158 號</span>
                                 </div>
                                 <div class="mt-2 mb-2">
                                     <a href="https://maps.app.goo.gl/1pmnrsKvjr5wWhPL9" id="mapBtn" class="btn btn-outline-blue btn-block" target="_blank" rel="noopener noreferrer">
@@ -237,14 +235,14 @@
                                     </a>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label" data-i18n="p4_parking_lbl">Parking Info:</span>
-                                    <span class="detail-val" data-i18n="p4_parking_val">Free parking available on-site.</span>
+                                    <span class="detail-label" data-i18n="p4_parking_lbl">停車資訊：</span>
+                                    <span class="detail-val" data-i18n="p4_parking_val">賓客可免費停放於 B5、B6 停車場</span>
                                 </div>
                             </div>
 
                             <!-- Venue Map Thumbnail -->
                             <div class="detail-item mt-3 mb-2">
-                                <span class="detail-label" data-i18n="p4_map_title">Building Map:</span>
+                                <span class="detail-label" data-i18n="p4_map_title">場館平面圖：</span>
                             </div>
                             <div class="map-thumbnail-wrapper mb-3 text-center" id="mapThumbBtn" role="button" tabindex="0" aria-label="Expand Map">
                                 <div class="map-thumbnail-container shadow-sm">

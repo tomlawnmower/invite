@@ -3,9 +3,9 @@ const translations = {
     'en': {
         // Nav tooltips
         nav_envelope: 'Intro',
-        nav_std: 'Save The Date',
-        nav_invitation: 'Invitation',
-        nav_venue: 'Venue & Time',
+        nav_std: 'Save the Date',
+        nav_invitation: 'Celebrate With Us',
+        nav_venue: 'Wedding Details',
         nav_dress: 'Dress Code',
         nav_faq: 'FAQ',
         nav_rsvp: 'RSVP',
@@ -20,9 +20,9 @@ const translations = {
 
         // Page 2
         p2_subtitle: 'Save The Date',
-        p2_title: "Pin-Chun & Thomas's Wedding",
+        p2_title: "Pin-Chun & Thomas",
         p2_date: 'December 12, 2026',
-        p2_location: 'Taipei',
+        p2_location: 'Mandarin Oriental, Taipei',
 
         // Page 3
         p3_subtitle: 'Together With Their Families',
@@ -34,21 +34,21 @@ const translations = {
         p4_schedule_title: 'Date & Schedule',
         p4_date_lbl: 'Date:',
         p4_date_val: 'Saturday, December 12, 2026',
-        p4_arrival_lbl: 'Guest Arrival:',
+        p4_arrival_lbl: 'Ceremony Guest Arrival:',
         p4_arrival_val: '4:30 PM',
         p4_ceremony_lbl: 'Wedding Ceremony:',
         p4_ceremony_val: '4:45 PM',
         p4_cocktail_lbl: 'Cocktail Hour & Candy Bar:',
-        p4_cocktail_val: '5:30 PM (Reception opens)',
+        p4_cocktail_val: '5:30 PM (Reception Open)',
         p4_reception_lbl: 'Reception Begins:',
-        p4_reception_val: '6:00 PM',
+        p4_reception_val: '6 PM',
         p4_location_title: 'Location & Parking',
         p4_venue_lbl: 'Venue:',
-        p4_venue_val: 'Mandarin Oriental, 8F, Taipei',
+        p4_venue_val: 'Mandarin Oriental, Taipei<br>8F: Grand Salon',
         p4_addr_lbl: 'Address:',
         p4_addr_val: 'No. 158 Dunhua North Road, Taipei, 10548',
         p4_parking_lbl: 'Parking Info:',
-        p4_parking_val: 'Free parking available on-site.',
+        p4_parking_val: 'Free parking available on level B5 and B6',
         p4_map_btn: 'Open Google Maps',
         p4_map_title: 'Building Map:',
         p4_map_thumb_hint: 'Click map to expand',
@@ -106,26 +106,26 @@ const translations = {
     'zh-tw': {
         // Nav tooltips
         nav_envelope: '開場動畫',
-        nav_std: '留唸日期',
-        nav_invitation: '誠摯邀請',
-        nav_venue: '時間地點',
-        nav_dress: '著裝要求',
+        nav_std: 'Save the Date',
+        nav_invitation: '婚禮邀請',
+        nav_venue: '婚禮資訊',
+        nav_dress: '服裝規範',
         nav_faq: '常見問題',
         nav_rsvp: '出席回覆',
         menu_btn: '選單',
 
         // Page 1
         p1_subtitle: '誠摯邀請',
-        p1_title: 'Pin-Chun 與 Thomas 的婚禮',
+        p1_title: '卓品君 與 Thomas',
         p1_video_notice: '開啟信封影片',
         p1_video_sub: '(點擊或滾動即可播放)',
         p1_scroll: '向下滾動探索',
 
         // Page 2
-        p2_subtitle: '請留下這個日期',
-        p2_title: 'Pin-Chun 與 Thomas 的婚禮',
+        p2_subtitle: 'Save the Date',
+        p2_title: '卓品君 & Thomas',
         p2_date: '2026年12月12日',
-        p2_location: '台北',
+        p2_location: '台北文華東方酒店',
 
         // Page 3
         p3_subtitle: '在雙方家長與親友的祝福下',
@@ -137,23 +137,23 @@ const translations = {
         p4_schedule_title: '日期與行程安排',
         p4_date_lbl: '日期：',
         p4_date_val: '2026年12月12日（星期六）',
-        p4_arrival_lbl: '賓客入場：',
-        p4_arrival_val: '下午 4:30',
+        p4_arrival_lbl: '證婚賓客入場：',
+        p4_arrival_val: '4:30 PM',
         p4_ceremony_lbl: '證婚儀式：',
-        p4_ceremony_val: '下午 4:45',
-        p4_cocktail_lbl: '迎賓雞尾酒與糖果吧：',
-        p4_cocktail_val: '下午 5:30（宴會廳開放）',
+        p4_ceremony_val: '4:45 PM',
+        p4_cocktail_lbl: '迎賓酒會・Candy Bar：',
+        p4_cocktail_val: '5:30 PM (晚宴開始入席)',
         p4_reception_lbl: '婚宴開始：',
-        p4_reception_val: '晚間 6:00',
+        p4_reception_val: '6 PM',
         p4_location_title: '地點與停車資訊',
-        p4_venue_lbl: '婚宴會館：',
-        p4_venue_val: '台北文華東方酒店 8樓',
+        p4_venue_lbl: '宴會地點：',
+        p4_venue_val: '台北文華東方酒店 8 樓｜文華閣',
         p4_addr_lbl: '地址：',
-        p4_addr_val: '敦化北路158號, 台北, 10548',
+        p4_addr_val: '台北市松山區敦化北路 158 號',
         p4_parking_lbl: '停車資訊：',
-        p4_parking_val: '現場提供免費專用停車位。',
+        p4_parking_val: '賓客可免費停放於 B5、B6 停車場',
         p4_map_btn: '開啟 Google 地圖',
-        p4_map_title: '會館平面地圖：',
+        p4_map_title: '場館平面圖：',
         p4_map_thumb_hint: '點擊放大會館地圖',
         p4_cal_btn: '加入行事曆',
         p4_cal_google: 'Google 行事曆',
@@ -175,7 +175,7 @@ const translations = {
         p6_q1: '問：我可以攜帶伴侶（Plus 1）嗎？',
         p6_a1: '答：當然可以！請於第 7 頁的回覆表單中註明出席總人數。',
         p6_q2: '問：建議幾點到達現場？',
-        p6_a2: '答：請於下午 4:30 前抵達，以便在 4:45 證婚儀式開始前順利入座。',
+        p6_a2: '答：請於 4:30 PM 前抵達，以便在 4:45 PM 證婚儀式開始前順利入座。',
         p6_q3: '問：現場是否有免費停車場？',
         p6_a3: '答：有的！飯店現場提供免費專屬停車位（敦化北路158號）。',
 
@@ -208,7 +208,7 @@ const translations = {
     }
 };
 
-let currentLang = localStorage.getItem('wedding_invite_lang') || 'en';
+let currentLang = localStorage.getItem('wedding_invite_lang') || 'zh-tw';
 
 function setLanguage(lang) {
     if (!translations[lang]) return;
@@ -233,7 +233,7 @@ function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
-            el.textContent = translations[lang][key];
+            el.innerHTML = translations[lang][key];
         }
     });
 
@@ -477,8 +477,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const calEvent = {
         title: "Pin-Chun & Thomas's Wedding",
-        location: "Mandarin Oriental, 8F, No. 158 Dunhua North Road, Taipei, 10548",
-        details: "Official Wedding Invitation for Pin-Chun & Thomas.\n\nSchedule:\n4:30 PM Guest Arrival\n4:45 PM Wedding Ceremony\n5:30 PM Cocktail Hour & Candy Bar\n6:00 PM Reception Begins",
+        location: "Mandarin Oriental, Taipei (8F: Grand Salon), No. 158 Dunhua North Road, Taipei, 10548",
+        details: "Official Wedding Invitation for Pin-Chun & Thomas.\n\nSchedule:\n4:30 PM Ceremony Guest Arrival\n4:45 PM Wedding Ceremony\n5:30 PM Check-in, Gift Reception, Cocktail Hour & Candy Bar\n6:00 PM Reception Begins",
         startUtc: "20261212T083000Z",
         endUtc: "20261212T133000Z",
         startIso: "2026-12-12T08:30:00Z",
