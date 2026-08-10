@@ -904,9 +904,40 @@ body.enable-scroll-fade .bg-deco {
     transition: opacity 1.04s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Entry transition state when section becomes in-view */
 body.enable-scroll-fade .page-section.in-view .bg-deco {
     opacity: var(--deco-opacity, 0.45);
+}
+
+/* Disable scroll fade effects specifically for Page 7 (RSVP Page) */
+#page7 .section-title,
+#page7 .section-subtitle,
+#page7 .glass-card,
+#page7 .form-group,
+#page7 input,
+#page7 select,
+#page7 textarea,
+#page7 button {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+body.enable-scroll-fade #page7 .section-title,
+body.enable-scroll-fade #page7 .section-subtitle,
+body.enable-scroll-fade #page7 .glass-card,
+body.enable-scroll-fade #page7 .form-group,
+body.enable-scroll-fade #page7 input,
+body.enable-scroll-fade #page7 select,
+body.enable-scroll-fade #page7 textarea,
+body.enable-scroll-fade #page7 button {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+body.enable-scroll-fade #page7 .bg-deco {
+    opacity: var(--deco-opacity, 0.45) !important;
+    transition: none !important;
 }
 
 /* Infinite Floating Animations */
