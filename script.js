@@ -62,11 +62,6 @@ const translations = {
         p6_title: 'Frequently Asked Questions',
         p6_q1: 'What should I wear?',
         p6_a1: 'We kindly invite our guests to dress in formal attire.<br>For those who would like a little inspiration, we encourage soft, neutral, and muted tones, such as ivory, linen, sand, sage, and dusty blue.',
-        c_ivory: 'Ivory',
-        c_linen: 'Linen',
-        c_sand: 'Sand',
-        c_sage: 'Sage',
-        c_dustyblue: 'Dusty Blue',
         p6_q2: 'When should we arrive?',
         p6_a2: 'If you plan to attend the wedding ceremony, please arrive by 4:30 PM and proceed directly to the ceremony venue upon arrival. Check-in will be available after the ceremony.<br><br>If you will be joining us for the reception only, we welcome you to arrive starting at 5:30 PM to enjoy the Cocktail Hour and Candy Bar before dinner.',
         p6_q3: 'Is parking available?',
@@ -78,30 +73,42 @@ const translations = {
 
         // Page 7
         p7_title: 'RSVP',
-        p7_subtitle: 'Please RSVP by Sept 15. If you have any questions please contact us at anytime!',
+        p7_subtitle: 'Please let us know if you can attend!',
         p7_alert: 'Thank you! Your RSVP has been received with joy!',
-        p7_lbl_name: 'Name(s) of Guest(s)',
-        p7_ph_name: 'Name(s) of Guest(s)',
-        p7_lbl_email: 'Email Address',
-        p7_ph_email: 'name@example.com',
-        p7_lbl_attendance: 'Attendance',
-        p7_att_yes: 'Joyfully Accepts',
-        p7_att_no: 'Regretfully Declines',
-        p7_lbl_guests: 'Number of Guests',
+        p7_lbl_name: 'Full Name',
+        p7_ph_name: 'Your full name',
+        p7_lbl_rel: 'Relationship to Couple',
+        p7_ph_rel: 'Please select your relationship',
+        p7_rel_bride: "Bride's Family / Friends",
+        p7_rel_groom: "Groom's Family / Friends",
+        p7_lbl_attendance: 'Attendance Choice',
+        p7_ph_attendance: 'Please select your attendance',
+        p7_att_both: 'Ceremony & Reception',
+        p7_att_reception: 'Reception Only',
+        p7_att_no: 'Unable to Attend',
+        p7_lbl_guests: 'Total Number of Guests',
         p7_gst_0: '0',
-        p7_gst_1: '1 (Just me)',
-        p7_gst_2: '2 (Me + Plus 1)',
-        p7_gst_3: '3 Guests',
-        p7_gst_4: '4 Guests',
-        p7_lbl_dietary: 'Dietary Choice / Options',
-        p7_diet_std: 'Standard Menu',
-        p7_diet_veg: 'Vegetarian Option',
-        p7_diet_vgn: 'Vegan Option',
-        p7_diet_gf: 'Gluten-Free',
-        p7_lbl_notes: 'Special Notes / Messages',
-        p7_ph_notes: '5 or more guests, dietary restrictions, song requests, or messages for the couple',
+        p7_gst_1: '1',
+        p7_gst_2: '2',
+        p7_gst_3: '3',
+        p7_gst_4: '4',
+        p7_gst_5: '5',
+        p7_lbl_add_guests: "If you're bringing additional guests, please list the names of everyone attending",
+        p7_ph_add_guests: 'e.g. Jane Doe, John Smith',
+        p7_lbl_physical_invite: 'Would you like to receive a physical wedding invitation?',
+        p7_ph_physical_invite: 'Please select an option',
+        p7_phys_yes: 'Yes',
+        p7_phys_no: 'No',
+        p7_lbl_mailing_addr: 'If you selected "Yes" above, please provide your name and mailing address',
+        p7_ph_mailing_addr: 'Full Name, Street Address, City, State/Province, Postal Code',
+        p7_lbl_email: 'Email / Phone Contact',
+        p7_ph_email: 'your.email@example.com or phone number',
+        p7_lbl_dietary: 'Dietary Restrictions & Special Needs',
+        p7_ph_dietary: 'No (or specify vegetarian, food allergies, highchairs, etc.)',
+        p7_lbl_notes: 'Message to the Couple',
+        p7_ph_notes: 'Send your warm wishes or special requests to Pin-Chun & Thomas',
         p7_submit: 'Submit RSVP',
-        p7_validation_err: 'Please fill out all required fields (*).'
+        p7_validation_err: 'Please fill out all required fields (*) including Name, Relationship, and Attendance.'
     },
     'zh-tw': {
         // Nav tooltips
@@ -164,12 +171,7 @@ const translations = {
         // Page 6
         p6_title: '常見問題',
         p6_q1: '婚禮當天怎麼穿？',
-        p6_a1: '敬請以 <strong>正式服裝（Formal Attire）</strong> 出席婚禮。<br>若需要穿搭靈感，歡迎參考柔和、中性色或低飽和色系（下方將提供色彩靈感供參考）：',
-        c_ivory: '象牙白',
-        c_linen: '亞麻色',
-        c_sand: '沙褐色',
-        c_sage: '鼠尾草綠',
-        c_dustyblue: '霧藍色',
+        p6_a1: '敬請以 <strong>正式服裝（Formal Attire）</strong> 出席婚禮。<br>若需要穿搭靈感，歡迎參考柔和、中性色或低飽和色系：',
         p6_q2: '建議幾點抵達？',
         p6_a2: '若您將參加證婚儀式，建議於 <strong>4:30 PM</strong> 前抵達，並直接前往證婚場地即可；證婚結束後即可報到。<br><br>若您僅參加晚宴，歡迎於 <strong>5:30 PM</strong> 起抵達，一同享用迎賓酒會與 Candy Bar。',
         p6_q3: '停車怎麼安排？',
@@ -181,30 +183,42 @@ const translations = {
 
         // Page 7
         p7_title: '出席回覆',
-        p7_subtitle: '請於 9 月 15 日前填寫出席回覆。如有任何變動,歡迎隨時與我們聯繫。期待在婚禮上見到大家！',
-        p7_alert: '感謝您的回覆！我們懷著無比喜悅期待您的光臨！',
-        p7_lbl_name: '賓客姓名',
-        p7_ph_name: '請輸入賓客姓名',
-        p7_lbl_email: '電子郵件',
-        p7_ph_email: 'name@example.com',
-        p7_lbl_attendance: '出席狀態',
-        p7_att_yes: '欣然出席',
-        p7_att_no: '遺憾無法出席',
-        p7_lbl_guests: '出席人數',
+        p7_subtitle: '誠摯邀請您與我們一同分享這份喜悅！',
+        p7_alert: '感謝您的回覆！我們已收到您的 RSVP！',
+        p7_lbl_name: '您的姓名',
+        p7_ph_name: '請輸入您的姓名',
+        p7_lbl_rel: '與新人的關係',
+        p7_ph_rel: '請選擇與新人的關係',
+        p7_rel_bride: '女方親友',
+        p7_rel_groom: '男方親友',
+        p7_lbl_attendance: '出席意願',
+        p7_ph_attendance: '請選擇出席意願',
+        p7_att_both: '參加證婚儀式與婚宴',
+        p7_att_reception: '僅參加婚宴',
+        p7_att_no: '無法出席',
+        p7_lbl_guests: '出席總人數',
         p7_gst_0: '0',
-        p7_gst_1: '1位 (本人)',
-        p7_gst_2: '2位 (本人 + 攜伴)',
-        p7_gst_3: '3位',
-        p7_gst_4: '4位',
-        p7_lbl_dietary: '飲食需求',
-        p7_diet_std: '標準菜單',
-        p7_diet_veg: '素食套餐 (Vegetarian)',
-        p7_diet_vgn: '全素套餐 (Vegan)',
-        p7_diet_gf: '無麩質飲食 (Gluten-Free)',
-        p7_lbl_notes: '備註 / 給新人的祝福',
-        p7_ph_notes: '5位或以上賓客、飲食過敏需求、點歌或給新人的溫馨祝福',
+        p7_gst_1: '1',
+        p7_gst_2: '2',
+        p7_gst_3: '3',
+        p7_gst_4: '4',
+        p7_gst_5: '5',
+        p7_lbl_add_guests: '若您攜帶其他賓客，請在此填寫所有隨行賓客的姓名：',
+        p7_ph_add_guests: '例：王小明、李小美',
+        p7_lbl_physical_invite: '請問是否需要寄送紙本/實體喜帖？',
+        p7_ph_physical_invite: '請選擇是否需要實體喜帖',
+        p7_phys_yes: '需要 (Yes)',
+        p7_phys_no: '不需要 (No)',
+        p7_lbl_mailing_addr: '若您選擇「需要」，請提供您的收件人姓名與郵寄地址：',
+        p7_ph_mailing_addr: '收件人姓名、郵遞區號、詳細郵寄地址',
+        p7_lbl_email: '電子郵件 / 聯絡電話',
+        p7_ph_email: '請輸入電子郵件或聯絡電話',
+        p7_lbl_dietary: '特殊飲食 / 兒童椅 / 其他需求',
+        p7_ph_dietary: '無（若有蛋奶素、素食、食物過敏或兒童椅需求請註明）',
+        p7_lbl_notes: '給新人的祝福或留言',
+        p7_ph_notes: '寫下您給 Pin-Chun & Thomas 的祝福小語',
         p7_submit: '送出出席回覆',
-        p7_validation_err: '請填寫所有必填欄位 (*)。'
+        p7_validation_err: '請填寫所有必填欄位 (*)，包含姓名、關係與出席意願。'
     }
 };
 
@@ -293,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateAttendanceState() {
         if (!attendanceSelect) return;
-        const isDeclining = (attendanceSelect.value === 'no');
+        const isDeclining = (attendanceSelect.value === 'Unable to Attend');
         const disabledFieldIds = ['guestCount', 'dietary'];
 
         disabledFieldIds.forEach(id => {
@@ -324,13 +338,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Google Form Integration Constants
-    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScPbD6UodpQwa3F_IfahJ75zM4M-PefpCZgp-HKwJBxUNEsgw/formResponse';
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfC1y9wH1HD9DtVRqmP8Z776080oC38yF8tgZyW_3GjvepPKw/formResponse';
     const GOOGLE_ENTRY_IDS = {
-        fullName: 'entry.1498135098',
-        attendance: 'entry.877086558',
-        guestCount: 'entry.1424661284',
-        dietary: 'entry.2606285',
-        notes: 'entry.2069830961'
+        fullName: 'entry.804147189',
+        relationship: 'entry.1322788788',
+        attendance: 'entry.1403502',
+        email: 'entry.537298206',
+        guestCount: 'entry.1722167015',
+        additionalGuestNames: 'entry.1488620360',
+        physicalInvite: 'entry.1780012217',
+        mailingAddress: 'entry.1652022736',
+        dietary: 'entry.622445412',
+        notes: 'entry.331175160'
     };
 
     if (rsvpForm) {
@@ -341,8 +360,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const fullNameInput = document.getElementById('fullName');
             const fullName = fullNameInput ? fullNameInput.value.trim() : '';
 
-            if (!fullName) {
-                console.warn('[RSVP] Full Name is empty! Validation failed.');
+            const relationshipSelect = document.getElementById('relationship');
+            const relationshipVal = relationshipSelect ? relationshipSelect.value : '';
+            const attendanceVal = attendanceSelect ? attendanceSelect.value : '';
+
+            if (!fullName || !relationshipVal || !attendanceVal) {
+                console.warn('[RSVP] Validation failed! Required fields missing.');
                 const errText = translations[currentLang].p7_validation_err;
                 alert(errText);
                 return;
@@ -352,37 +375,38 @@ document.addEventListener('DOMContentLoaded', function () {
             if (submitBtn) submitBtn.disabled = true;
 
             const guestCountSelect = document.getElementById('guestCount');
-            const dietarySelect = document.getElementById('dietary');
+            const addGuestsInput = document.getElementById('additionalGuestNames');
+            const physicalInviteSelect = document.getElementById('physicalInvite');
+            const mailingAddressInput = document.getElementById('mailingAddress');
+            const emailInput = document.getElementById('email');
+            const dietaryInput = document.getElementById('dietary');
             const notesInput = document.getElementById('notes');
 
-            // Map website values to exact strings expected by Google Forms
-            let attendanceVal = "Yes,  I'll be there";
-            if (attendanceSelect && attendanceSelect.value === 'no') {
-                attendanceVal = "Sorry, can't make it";
-            }
-
-            const guestCountVal = (attendanceSelect && attendanceSelect.value === 'no') 
-                ? '0' 
-                : (guestCountSelect ? guestCountSelect.value : '1');
-
-            let dietaryVal = '';
-            if (attendanceSelect && attendanceSelect.value !== 'no' && dietarySelect) {
-                const dietMap = {
-                    'standard': 'Standard Menu',
-                    'vegetarian': 'Vegetarian',
-                    'vegan': 'Vegan',
-                    'gluten-free': 'Gluten free'
-                };
-                dietaryVal = dietMap[dietarySelect.value] || 'Standard Menu';
-            }
-
+            const isDeclining = (attendanceVal === 'Unable to Attend');
+            const guestCountVal = isDeclining ? '0' : (guestCountSelect ? guestCountSelect.value : '1');
+            const addGuestsVal = addGuestsInput ? addGuestsInput.value.trim() : '';
+            const physicalInviteVal = physicalInviteSelect ? physicalInviteSelect.value : '';
+            const mailingAddressVal = mailingAddressInput ? mailingAddressInput.value.trim() : '';
+            const emailVal = emailInput ? emailInput.value.trim() : '';
+            const dietaryVal = isDeclining ? 'No' : ((dietaryInput && dietaryInput.value.trim()) ? dietaryInput.value.trim() : 'No');
             const notesVal = notesInput ? notesInput.value.trim() : '';
 
             const formData = new URLSearchParams();
             formData.append(GOOGLE_ENTRY_IDS.fullName, fullName);
+            formData.append(GOOGLE_ENTRY_IDS.relationship, relationshipVal);
             formData.append(GOOGLE_ENTRY_IDS.attendance, attendanceVal);
-            if (guestCountVal && guestCountVal !== '0') {
-                formData.append(GOOGLE_ENTRY_IDS.guestCount, guestCountVal);
+            if (emailVal) {
+                formData.append(GOOGLE_ENTRY_IDS.email, emailVal);
+            }
+            formData.append(GOOGLE_ENTRY_IDS.guestCount, guestCountVal);
+            if (addGuestsVal) {
+                formData.append(GOOGLE_ENTRY_IDS.additionalGuestNames, addGuestsVal);
+            }
+            if (physicalInviteVal) {
+                formData.append(GOOGLE_ENTRY_IDS.physicalInvite, physicalInviteVal);
+            }
+            if (mailingAddressVal) {
+                formData.append(GOOGLE_ENTRY_IDS.mailingAddress, mailingAddressVal);
             }
             if (dietaryVal) {
                 formData.append(GOOGLE_ENTRY_IDS.dietary, dietaryVal);

@@ -321,23 +321,18 @@
                                             <div class="color-palette-row d-flex flex-wrap justify-content-center align-items-center">
                                                 <div class="color-circle-item text-center">
                                                     <span class="color-circle" style="background-color: #FDFBF7; border: 1.5px solid #D9D2C7;" title="Ivory / 象牙白"></span>
-                                                    <span class="color-name small d-block mt-1" data-i18n="c_ivory">象牙白</span>
                                                 </div>
                                                 <div class="color-circle-item text-center">
                                                     <span class="color-circle" style="background-color: #EAE3D2; border: 1.5px solid #D4CCA9;" title="Linen / 亞麻色"></span>
-                                                    <span class="color-name small d-block mt-1" data-i18n="c_linen">亞麻色</span>
                                                 </div>
                                                 <div class="color-circle-item text-center">
                                                     <span class="color-circle" style="background-color: #D4C5A9; border: 1.5px solid #BEAF93;" title="Sand / 沙褐色"></span>
-                                                    <span class="color-name small d-block mt-1" data-i18n="c_sand">沙褐色</span>
                                                 </div>
                                                 <div class="color-circle-item text-center">
                                                     <span class="color-circle" style="background-color: #A3B19B; border: 1.5px solid #8C9B84;" title="Sage / 鼠尾草綠"></span>
-                                                    <span class="color-name small d-block mt-1" data-i18n="c_sage">鼠尾草綠</span>
                                                 </div>
                                                 <div class="color-circle-item text-center">
                                                     <span class="color-circle" style="background-color: #8EA5B5; border: 1.5px solid #778F9F;" title="Dusty Blue / 霧藍色"></span>
-                                                    <span class="color-name small d-block mt-1" data-i18n="c_dustyblue">霧藍色</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -454,47 +449,88 @@
                     </div>
 
                     <form id="rsvpForm" novalidate>
+                        <!-- Full Name -->
                         <div class="form-group">
-                            <label for="fullName" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_name">Name(s) of Guest(s)</span> <span class="text-lightblue">*</span></label>
-                            <input type="text" class="form-control light-input" id="fullName" placeholder="Name(s) of Guest(s)" data-i18n-ph="p7_ph_name" required>
+                            <label for="fullName" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_name">您的姓名</span> <span class="text-lightblue">*</span></label>
+                            <input type="text" class="form-control light-input" id="fullName" placeholder="請輸入您的姓名" data-i18n-ph="p7_ph_name" required>
                         </div>
 
+                        <!-- Relationship to Couple -->
                         <div class="form-group">
-                            <label for="attendance" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_attendance">Attendance</span> <span class="text-lightblue">*</span></label>
-                            <select class="form-control light-input" id="attendance" required>
-                                <option value="yes" data-i18n="p7_att_yes">Joyfully Accepts</option>
-                                <option value="no" data-i18n="p7_att_no">Regretfully Declines</option>
+                            <label for="relationship" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_rel">與新人的關係</span> <span class="text-lightblue">*</span></label>
+                            <select class="form-control light-input" id="relationship" required>
+                                <option value="" selected disabled hidden data-i18n="p7_ph_rel">請選擇與新人的關係</option>
+                                <option value="Bride's Family/Friends" data-i18n="p7_rel_bride">女方親友</option>
+                                <option value="Groom's Family/Friends" data-i18n="p7_rel_groom">男方親友</option>
                             </select>
                         </div>
 
+                        <!-- Attendance Choice -->
                         <div class="form-group">
-                            <label for="guestCount" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_guests">Number of Guests</span> <span class="text-lightblue">*</span></label>
+                            <label for="attendance" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_attendance">出席意願</span> <span class="text-lightblue">*</span></label>
+                            <select class="form-control light-input" id="attendance" required>
+                                <option value="" selected disabled hidden data-i18n="p7_ph_attendance">請選擇出席意願</option>
+                                <option value="Ceremony & Reception" data-i18n="p7_att_both">參加證婚儀式與婚宴</option>
+                                <option value="Reception Only" data-i18n="p7_att_reception">僅參加婚宴</option>
+                                <option value="Unable to Attend" data-i18n="p7_att_no">無法出席</option>
+                            </select>
+                        </div>
+
+                        <!-- Email / Contact -->
+                        <div class="form-group">
+                            <label for="email" class="text-dark font-weight-bold" data-i18n="p7_lbl_email">電子郵件 / 聯絡電話</label>
+                            <input type="text" class="form-control light-input" id="email" placeholder="請輸入電子郵件或聯絡電話" data-i18n-ph="p7_ph_email">
+                        </div>
+
+                        <!-- Total Number of Guests -->
+                        <div class="form-group">
+                            <label for="guestCount" class="text-dark font-weight-bold"><span data-i18n="p7_lbl_guests">出席總人數</span> <span class="text-lightblue">*</span></label>
                             <select class="form-control light-input" id="guestCount" required>
                                 <option value="0" data-i18n="p7_gst_0" hidden disabled>0</option>
-                                <option value="1" data-i18n="p7_gst_1" selected>1 (Just me)</option>
-                                <option value="2" data-i18n="p7_gst_2">2 (Me + Plus 1)</option>
-                                <option value="3" data-i18n="p7_gst_3">3 Guests</option>
-                                <option value="4" data-i18n="p7_gst_4">4 Guests</option>
+                                <option value="1" data-i18n="p7_gst_1" selected>1</option>
+                                <option value="2" data-i18n="p7_gst_2">2</option>
+                                <option value="3" data-i18n="p7_gst_3">3</option>
+                                <option value="4" data-i18n="p7_gst_4">4</option>
+                                <option value="5" data-i18n="p7_gst_5">5</option>
                             </select>
                         </div>
 
+                        <!-- Additional Guest Names -->
                         <div class="form-group">
-                            <label for="dietary" class="text-dark font-weight-bold" data-i18n="p7_lbl_dietary">Dietary Choice / Options</label>
-                            <select class="form-control light-input" id="dietary">
-                                <option value="standard" data-i18n="p7_diet_std">Standard Menu</option>
-                                <option value="vegetarian" data-i18n="p7_diet_veg">Vegetarian Option</option>
-                                <option value="vegan" data-i18n="p7_diet_vgn">Vegan Option</option>
-                                <option value="gluten-free" data-i18n="p7_diet_gf">Gluten-Free</option>
+                            <label for="additionalGuestNames" class="text-dark font-weight-bold" data-i18n="p7_lbl_add_guests">若您攜帶其他賓客，請在此填寫所有隨行賓客的姓名：</label>
+                            <input type="text" class="form-control light-input" id="additionalGuestNames" placeholder="例：王小明、李小美" data-i18n-ph="p7_ph_add_guests">
+                        </div>
+
+                        <!-- Physical Wedding Invitation Option -->
+                        <div class="form-group">
+                            <label for="physicalInvite" class="text-dark font-weight-bold" data-i18n="p7_lbl_physical_invite">請問是否需要寄送紙本/實體喜帖？</label>
+                            <select class="form-control light-input" id="physicalInvite">
+                                <option value="" selected disabled hidden data-i18n="p7_ph_physical_invite">請選擇是否需要實體喜帖</option>
+                                <option value="Yes" data-i18n="p7_phys_yes">需要 (Yes)</option>
+                                <option value="No" data-i18n="p7_phys_no">不需要 (No)</option>
                             </select>
                         </div>
 
+                        <!-- Mailing Address -->
                         <div class="form-group">
-                            <label for="notes" class="text-dark font-weight-bold" data-i18n="p7_lbl_notes">Special Notes / Messages</label>
-                            <textarea class="form-control light-input" id="notes" rows="3" placeholder="5 or more guests, dietary restrictions, song requests, or messages for the couple" data-i18n-ph="p7_ph_notes"></textarea>
+                            <label for="mailingAddress" class="text-dark font-weight-bold" data-i18n="p7_lbl_mailing_addr">若您選擇「需要」，請提供您的收件人姓名與郵寄地址：</label>
+                            <textarea class="form-control light-input" id="mailingAddress" rows="2" placeholder="收件人姓名、郵遞區號、詳細郵寄地址" data-i18n-ph="p7_ph_mailing_addr"></textarea>
+                        </div>
+
+                        <!-- Dietary Restrictions & Special Requirements -->
+                        <div class="form-group">
+                            <label for="dietary" class="text-dark font-weight-bold" data-i18n="p7_lbl_dietary">特殊飲食 / 兒童椅 / 其他需求</label>
+                            <input type="text" class="form-control light-input" id="dietary" placeholder="無（若有蛋奶素、素食、食物過敏或兒童椅需求請註明）" data-i18n-ph="p7_ph_dietary">
+                        </div>
+
+                        <!-- Special Notes / Message to Couple -->
+                        <div class="form-group">
+                            <label for="notes" class="text-dark font-weight-bold" data-i18n="p7_lbl_notes">給新人的祝福或留言</label>
+                            <textarea class="form-control light-input" id="notes" rows="3" placeholder="寫下您給 Pin-Chun & Thomas 的祝福小語" data-i18n-ph="p7_ph_notes"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-sky-blue btn-block btn-lg mt-4 shadow">
-                            <i class="fa-solid fa-paw mr-2"></i> <span data-i18n="p7_submit">Submit RSVP</span>
+                            <i class="fa-solid fa-paw mr-2"></i> <span data-i18n="p7_submit">送出出席回覆</span>
                         </button>
                     </form>
                 </div>

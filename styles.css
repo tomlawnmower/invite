@@ -1486,11 +1486,10 @@ select.light-input option[hidden] {
 }
 
 .color-circle-item {
-    margin: 8px 16px;
+    margin: 6px 12px;
     display: inline-flex;
-    flex-direction: column;
     align-items: center;
-    min-width: 64px;
+    justify-content: center;
 }
 
 .color-circle {
@@ -1508,13 +1507,6 @@ select.light-input option[hidden] {
 .color-circle-item:hover .color-circle {
     transform: scale(1.18);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.24);
-}
-
-.color-name {
-    font-size: 0.84rem;
-    font-weight: 600;
-    color: var(--text-navy);
-    white-space: nowrap;
 }
 
 
