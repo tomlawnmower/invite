@@ -419,6 +419,35 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     transform: translateX(-20%);
 }
 
+.wedding-photo-wrapper {
+    width: 100%;
+    max-width: 440px;
+}
+
+.wedding-photo {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: contain;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(2, 132, 199, 0.22);
+    margin: 0 auto;
+}
+
+.p3-top-heading {
+    font-size: clamp(1.4rem, 4.2vw, 2.2rem);
+    letter-spacing: 1.5px;
+    line-height: 1.35;
+}
+
+.p3-bottom-lead {
+    font-size: clamp(1rem, 2.8vw, 1.25rem);
+    color: var(--blue-primary);
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
 .date-badge {
     display: inline-block;
     padding: 8px 20px;
@@ -503,6 +532,7 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
     border: 1px solid var(--blue-soft);
     border-radius: 12px !important;
     box-shadow: 0 4px 12px rgba(2, 132, 199, 0.06);
+    overflow: hidden;
 }
 
 .faq-card .card-header {
@@ -525,6 +555,16 @@ h1, h2, h3, h4, h5, .wedding-title, .wedding-subtitle, .monogram {
 .faq-card .card-body {
     padding: 14px 16px;
     font-size: clamp(0.9rem, 3.2vw, 1rem);
+}
+
+/* FAQ Sliding Open Animation */
+.faq-card .collapse {
+    overflow: hidden;
+    transition: height 0.35s ease-in-out;
+}
+
+.faq-card .collapse:not(.show) {
+    display: none;
 }
 
 /* RSVP Form Controls */
@@ -771,7 +811,8 @@ select.light-input option[hidden] {
 /* Initial hidden state for titles: 20px drop down */
 .page-section .section-title,
 .page-section .section-subtitle,
-.page-section .wedding-title {
+.page-section .wedding-title,
+.page-section .p3-top-heading {
     opacity: 0;
     transform: translateY(-20px);
     transition: opacity 0.88s ease-out, transform 0.64s ease-out;
@@ -780,13 +821,15 @@ select.light-input option[hidden] {
 /* Initial hidden state for body elements: 20px drop up */
 .page-section .glass-card,
 .page-section .photo-frame-wrapper,
+.page-section .wedding-photo-wrapper,
 .page-section .location-brief,
 .page-section .accordion,
 .page-section .date-badge,
 .page-section .invitation-deco-img,
 .page-section .venue-deco-img,
 .page-section .dresscode-deco-img,
-.page-section .faq-deco-img {
+.page-section .faq-deco-img,
+.page-section .p3-bottom-lead {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.88s ease-out 0.2s, transform 0.88s ease-out 0.2s;
@@ -795,20 +838,23 @@ select.light-input option[hidden] {
 /* Full opacity settled state when section comes into view */
 .page-section.in-view .section-title,
 .page-section.in-view .section-subtitle,
-.page-section.in-view .wedding-title {
+.page-section.in-view .wedding-title,
+.page-section.in-view .p3-top-heading {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
 
 .page-section.in-view .glass-card,
 .page-section.in-view .photo-frame-wrapper,
+.page-section.in-view .wedding-photo-wrapper,
 .page-section.in-view .location-brief,
 .page-section.in-view .accordion,
 .page-section.in-view .date-badge,
 .page-section.in-view .invitation-deco-img,
 .page-section.in-view .venue-deco-img,
 .page-section.in-view .dresscode-deco-img,
-.page-section.in-view .faq-deco-img {
+.page-section.in-view .faq-deco-img,
+.page-section.in-view .p3-bottom-lead {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
@@ -1210,6 +1256,248 @@ select.light-input option[hidden] {
     background-color: var(--bg-light-1);
     color: var(--blue-primary);
     padding-left: 20px;
+}
+
+/* ==========================================================================
+   Photo Gallery & Lightbox Modal Styles
+   ========================================================================== */
+
+.photo-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    max-width: 540px;
+    width: 100%;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(2, 132, 199, 0.18);
+    aspect-ratio: 4 / 3;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 3 items top row (each spans 2 of 6 columns) */
+.gallery-item:nth-child(1),
+.gallery-item:nth-child(2),
+.gallery-item:nth-child(3) {
+    grid-column: span 2;
+}
+
+/* 2 items bottom row (each spans 3 of 6 columns) */
+.gallery-item:nth-child(4),
+.gallery-item:nth-child(5) {
+    grid-column: span 3;
+}
+
+.gallery-item:hover,
+.gallery-item:focus {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 14px 30px rgba(2, 132, 199, 0.3);
+    outline: none;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-img,
+.gallery-item:focus .gallery-img {
+    transform: scale(1.08);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.4rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay,
+.gallery-item:focus .gallery-overlay {
+    opacity: 1;
+}
+
+/* Gallery Lightbox Modal */
+.gallery-lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.gallery-lightbox-modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content-wrapper {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    transition: transform 0.3s ease;
+}
+
+.lightbox-counter {
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: rgba(255, 255, 255, 0.18);
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    z-index: 10001;
+}
+
+.lightbox-close-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.08);
+}
+
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.18);
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    z-index: 10001;
+}
+
+.lightbox-prev-btn {
+    left: 24px;
+}
+
+.lightbox-next-btn {
+    right: 24px;
+}
+
+.lightbox-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-50%) scale(1.08);
+}
+
+@media (max-width: 576px) {
+    .photo-gallery-grid {
+        gap: 8px;
+    }
+    .gallery-item {
+        border-radius: 10px;
+    }
+    .lightbox-prev-btn {
+        left: 12px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .lightbox-next-btn {
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .lightbox-close-btn {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+/* FAQ Color Palette Circles */
+.color-palette-wrapper {
+    border-top: 1px dashed rgba(2, 132, 199, 0.2);
+}
+
+.color-circle-item {
+    margin: 6px 14px;
+}
+
+.color-circle {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.color-circle-item:hover .color-circle {
+    transform: scale(1.18);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.color-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-navy);
 }
 
 

@@ -6,7 +6,6 @@ const translations = {
         nav_std: 'Save the Date',
         nav_invitation: 'Celebrate With Us',
         nav_venue: 'Wedding Details',
-        nav_dress: 'Dress Code',
         nav_faq: 'FAQ',
         nav_rsvp: 'RSVP',
         menu_btn: 'Menu',
@@ -19,15 +18,14 @@ const translations = {
         p1_scroll: 'Scroll Down to Explore',
 
         // Page 2
-        p2_subtitle: 'Save The Date',
+        p2_subtitle: 'Save the Date',
         p2_title: "Pin-Chun & Thomas",
         p2_date: 'December 12, 2026',
         p2_location: 'Mandarin Oriental, Taipei',
 
         // Page 3
-        p3_subtitle: 'Together With Their Families',
-        p3_prose: '"With joyful hearts and endless love, we request the honor of your presence to celebrate the union of our lives and hearts. Join us as we exchange our vows and begin our journey together as husband and wife."',
-        p3_quote_end: 'We look forward to sharing this magical day with you.',
+        p3_top_text: 'To Love, Laughter & Forever',
+        p3_bottom_text: "We can't wait to celebrate this special day with you.",
 
         // Page 4
         p4_title: 'Venue & Event Details',
@@ -58,27 +56,29 @@ const translations = {
         p4_cal_outlook: 'Outlook Calendar',
         p4_cal_ics: 'Download .ICS File',
 
-        // Page 5
-        p5_subtitle: 'Dress Code',
-        p5_theme: 'Black Tie',
-        p5_lead: 'We ask that our guests dress in black tie attire to join us in making the evening unforgettable.',
-        p5_ladies_title: 'Ladies',
-        p5_ladies_desc: 'Floor-length evening gowns or formal dresses.',
-        p5_gentlemen_title: 'Gentlemen',
-        p5_gentlemen_desc: 'Tuxedos or formal dark suits with black bow ties.',
+
 
         // Page 6
         p6_title: 'Frequently Asked Questions',
-        p6_q1: 'Q: Can I bring a plus 1?',
-        p6_a1: 'A: Yes, you can bring a plus 1! Please use the RSVP form on Page 7 to indicate the number of guests.',
-        p6_q2: 'Q: What time should I arrive?',
-        p6_a2: 'A: Please plan to arrive at 4:30 PM so everyone is seated before the ceremony starts at 4:45 PM.',
-        p6_q3: 'Q: Is there free parking?',
-        p6_a3: 'A: Yes! On-site free parking is provided at No. 158 Dunhua North Road, Taipei, 10548.',
+        p6_q1: 'What should I wear?',
+        p6_a1: 'We kindly invite our guests to dress in formal attire.<br>For those who would like a little inspiration, we encourage soft, neutral, and muted tones, such as ivory, linen, sand, sage, and dusty blue.',
+        c_ivory: 'Ivory',
+        c_linen: 'Linen',
+        c_sand: 'Sand',
+        c_sage: 'Sage',
+        c_dustyblue: 'Dusty Blue',
+        p6_q2: 'When should we arrive?',
+        p6_a2: 'If you plan to attend the wedding ceremony, please arrive by 4:30 PM and proceed directly to the ceremony venue upon arrival. Check-in will be available after the ceremony.<br><br>If you will be joining us for the reception only, we welcome you to arrive starting at 5:30 PM to enjoy the Cocktail Hour and Candy Bar before dinner.',
+        p6_q3: 'Is parking available?',
+        p6_a3: 'Complimentary parking is available for wedding guests on B5 and B6.<br>The hotel staff will validate your parking ticket toward the end of the reception to provide sufficient parking time.<br>Please note that overnight parking is not available.',
+        p6_q4: 'Do you accommodate dietary restrictions?',
+        p6_a4: "If you have any dietary restrictions, food allergies, or vegetarian requests, please let us know in your RSVP. We'll do our best to accommodate your needs.",
+        p6_q5: 'Need More Help?',
+        p6_a5: 'If you have any questions, please feel free to contact us anytime.',
 
         // Page 7
         p7_title: 'RSVP',
-        p7_subtitle: 'Please let us know if you can attend!',
+        p7_subtitle: 'Please RSVP by Sept 15. If you have any questions please contact us at anytime!',
         p7_alert: 'Thank you! Your RSVP has been received with joy!',
         p7_lbl_name: 'Name(s) of Guest(s)',
         p7_ph_name: 'Name(s) of Guest(s)',
@@ -109,7 +109,6 @@ const translations = {
         nav_std: 'Save the Date',
         nav_invitation: '婚禮邀請',
         nav_venue: '婚禮資訊',
-        nav_dress: '服裝規範',
         nav_faq: '常見問題',
         nav_rsvp: '出席回覆',
         menu_btn: '選單',
@@ -128,9 +127,8 @@ const translations = {
         p2_location: '台北文華東方酒店',
 
         // Page 3
-        p3_subtitle: '在雙方家長與親友的祝福下',
-        p3_prose: '「帶著滿懷的喜悅與無盡的愛，我們誠摯地邀請您一同見證我們的神聖婚禮。請與我們共同分享這份美好的喜悅，見證我們攜手開啟人生的全新篇章。」',
-        p3_quote_end: '期待與您一同度過這難忘的浪漫時光。',
+        p3_top_text: '愛・歡笑・幸福相伴',
+        p3_bottom_text: '幸福, 因相聚而完整<br>期待與家人朋友們一起分享這份喜悅',
 
         // Page 4
         p4_title: '宴會時間與地點',
@@ -161,27 +159,29 @@ const translations = {
         p4_cal_outlook: 'Outlook 行事曆',
         p4_cal_ics: '下載 .ICS 檔案',
 
-        // Page 5
-        p5_subtitle: '著裝要求',
-        p5_theme: '正裝 (Black Tie)',
-        p5_lead: '為了讓晚宴更添隆重與浪漫，誠摯邀請各位賓客穿著正裝（Black Tie）出席這場盛會。',
-        p5_ladies_title: '女士',
-        p5_ladies_desc: '晚禮服、長裙或隆重派對禮服。',
-        p5_gentlemen_title: '男士',
-        p5_gentlemen_desc: '無尾禮服（Tuxedo）或深色西裝搭配黑領結。',
+
 
         // Page 6
         p6_title: '常見問題',
-        p6_q1: '問：我可以攜帶伴侶（Plus 1）嗎？',
-        p6_a1: '答：當然可以！請於第 7 頁的回覆表單中註明出席總人數。',
-        p6_q2: '問：建議幾點到達現場？',
-        p6_a2: '答：請於 4:30 PM 前抵達，以便在 4:45 PM 證婚儀式開始前順利入座。',
-        p6_q3: '問：現場是否有免費停車場？',
-        p6_a3: '答：有的！飯店現場提供免費專屬停車位（敦化北路158號）。',
+        p6_q1: '婚禮當天怎麼穿？',
+        p6_a1: '敬請以 <strong>正式服裝（Formal Attire）</strong> 出席婚禮。<br>若需要穿搭靈感，歡迎參考柔和、中性色或低飽和色系（下方將提供色彩靈感供參考）：',
+        c_ivory: '象牙白',
+        c_linen: '亞麻色',
+        c_sand: '沙褐色',
+        c_sage: '鼠尾草綠',
+        c_dustyblue: '霧藍色',
+        p6_q2: '建議幾點抵達？',
+        p6_a2: '若您將參加證婚儀式，建議於 <strong>4:30 PM</strong> 前抵達，並直接前往證婚場地即可；證婚結束後即可報到。<br><br>若您僅參加晚宴，歡迎於 <strong>5:30 PM</strong> 起抵達，一同享用迎賓酒會與 Candy Bar。',
+        p6_q3: '停車怎麼安排？',
+        p6_a3: '婚宴賓客可免費停放於 <strong>B5、B6 停車場</strong>。<br>宴會尾聲將由飯店服務人員協助消磁停車券，提供足夠停車時數。<br><strong>溫馨提醒：</strong>車輛無法停放過夜。',
+        p6_q4: '有特殊飲食需求嗎？',
+        p6_a4: '若您有素食需求、食物過敏或其他特殊飲食需求，請於 RSVP 時告知我們，我們將盡力協助安排。',
+        p6_q5: '還有其他問題嗎？',
+        p6_a5: '若有任何問題，歡迎隨時與我們聯繫。',
 
         // Page 7
         p7_title: '出席回覆',
-        p7_subtitle: '請於 2026年10月15日前回覆，方便我們為您準備座位！',
+        p7_subtitle: '請於 9 月 15 日前填寫出席回覆。如有任何變動,歡迎隨時與我們聯繫。期待在婚禮上見到大家！',
         p7_alert: '感謝您的回覆！我們懷著無比喜悅期待您的光臨！',
         p7_lbl_name: '賓客姓名',
         p7_ph_name: '請輸入賓客姓名',
@@ -467,6 +467,171 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // 7. Photo Gallery Lightbox Modal Handler
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryLightbox = document.getElementById('galleryLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    const galleryPhotos = [
+        'images/p1.jpg',
+        'images/p2.jpg',
+        'images/p3.jpg',
+        'images/p4.jpg',
+        'images/p5.jpg'
+    ];
+
+    let currentGalleryIndex = 0;
+
+    function updateLightboxPhoto(index) {
+        currentGalleryIndex = (index + galleryPhotos.length) % galleryPhotos.length;
+        if (lightboxImg) {
+            lightboxImg.src = galleryPhotos[currentGalleryIndex];
+        }
+        if (lightboxCounter) {
+            lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${galleryPhotos.length}`;
+        }
+    }
+
+    function openGalleryLightbox(index) {
+        if (galleryLightbox) {
+            updateLightboxPhoto(index);
+            galleryLightbox.classList.add('open');
+            galleryLightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeGalleryLightbox() {
+        if (galleryLightbox) {
+            galleryLightbox.classList.remove('open');
+            galleryLightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    galleryItems.forEach((item, i) => {
+        item.addEventListener('click', () => openGalleryLightbox(i));
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryLightbox(i);
+            }
+        });
+    });
+
+    if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateLightboxPhoto(currentGalleryIndex - 1);
+        });
+    }
+
+    if (lightboxNext) {
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateLightboxPhoto(currentGalleryIndex + 1);
+        });
+    }
+
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeGalleryLightbox);
+    }
+
+    if (galleryLightbox) {
+        galleryLightbox.addEventListener('click', (e) => {
+            if (e.target === galleryLightbox || e.target.classList.contains('lightbox-content-wrapper')) {
+                closeGalleryLightbox();
+            }
+        });
+
+        // Swipe support for touch devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        galleryLightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        galleryLightbox.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 40;
+            if (touchEndX < touchStartX - threshold) {
+                updateLightboxPhoto(currentGalleryIndex + 1);
+            } else if (touchEndX > touchStartX + threshold) {
+                updateLightboxPhoto(currentGalleryIndex - 1);
+            }
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (galleryLightbox && galleryLightbox.classList.contains('open')) {
+            if (e.key === 'Escape') {
+                closeGalleryLightbox();
+            } else if (e.key === 'ArrowRight') {
+                updateLightboxPhoto(currentGalleryIndex + 1);
+            } else if (e.key === 'ArrowLeft') {
+                updateLightboxPhoto(currentGalleryIndex - 1);
+            }
+        }
+    });
+
+    // 8. FAQ Accordion Handler (Smooth Height Sliding Open & Close)
+    const faqButtons = document.querySelectorAll('#weddingFaq .btn-link');
+    faqButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const targetId = this.getAttribute('data-target') || this.getAttribute('href');
+            if (!targetId) return;
+            const targetEl = document.querySelector(targetId);
+            if (!targetEl) return;
+
+            const isAlreadyOpen = targetEl.classList.contains('show');
+
+            // Close all open cards in the FAQ accordion
+            document.querySelectorAll('#weddingFaq .collapse').forEach(item => {
+                if (item.classList.contains('show')) {
+                    item.style.height = item.scrollHeight + 'px';
+                    void item.offsetHeight;
+                    item.style.height = '0px';
+                    setTimeout(() => {
+                        item.classList.remove('show');
+                        item.style.height = '';
+                    }, 350);
+                }
+            });
+
+            document.querySelectorAll('#weddingFaq .btn-link').forEach(btn => {
+                btn.classList.add('collapsed');
+                btn.setAttribute('aria-expanded', 'false');
+            });
+
+            // Slide open selected card
+            if (!isAlreadyOpen) {
+                targetEl.classList.add('show');
+                const fullHeight = targetEl.scrollHeight;
+                targetEl.style.height = '0px';
+                void targetEl.offsetHeight;
+                targetEl.style.height = fullHeight + 'px';
+                this.classList.remove('collapsed');
+                this.setAttribute('aria-expanded', 'true');
+
+                setTimeout(() => {
+                    targetEl.style.height = '';
+                }, 350);
+            }
+        });
+    });
+
     // Add to Calendar Dropdown & Links Handler
     const calendarDropdownWrapper = document.getElementById('calendarDropdownWrapper');
     const calendarBtn = document.getElementById('calendarBtn');
@@ -568,33 +733,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    // 7. Vanilla JS Accordion Toggler for FAQ (replaces jQuery & Bootstrap JS dependencies)
-    const faqButtons = document.querySelectorAll('#weddingFaq [data-toggle="collapse"]');
-    faqButtons.forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('data-target');
-            const targetEl = document.querySelector(targetId);
-            if (!targetEl) return;
-
-            const isShown = targetEl.classList.contains('show');
-
-            // Close all collapses in FAQ accordion
-            document.querySelectorAll('#weddingFaq .collapse').forEach(c => c.classList.remove('show'));
-            document.querySelectorAll('#weddingFaq [data-toggle="collapse"]').forEach(b => {
-                b.classList.add('collapsed');
-                b.setAttribute('aria-expanded', 'false');
-            });
-
-            // Toggle selected item
-            if (!isShown) {
-                targetEl.classList.add('show');
-                this.classList.remove('collapsed');
-                this.setAttribute('aria-expanded', 'true');
-            }
-        });
-    });
 
     // 8. Floating Site Menu Toggle & Click Outside Handler
     const menuWrapper = document.getElementById('siteMenuWrapper');
