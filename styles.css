@@ -808,17 +808,11 @@ select.light-input option[hidden] {
    Scroll-Driven Animations (Pages 2 - 7)
    ========================================================================== */
 
-/* Initial hidden state for titles: 20px drop down */
+/* Default state: fully visible for all browsers */
 .page-section .section-title,
 .page-section .section-subtitle,
 .page-section .wedding-title,
-.page-section .p3-top-heading {
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.88s ease-out, transform 0.64s ease-out;
-}
-
-/* Initial hidden state for body elements: 20px drop up */
+.page-section .p3-top-heading,
 .page-section .glass-card,
 .page-section .photo-frame-wrapper,
 .page-section .wedding-photo-wrapper,
@@ -830,31 +824,52 @@ select.light-input option[hidden] {
 .page-section .dresscode-deco-img,
 .page-section .faq-deco-img,
 .page-section .p3-bottom-lead {
+    opacity: 1;
+    transform: none;
+}
+
+/* Scroll-Driven Animations: Enabled ONLY for Chrome, Safari, Firefox, Brave */
+body.enable-scroll-fade .page-section .section-title,
+body.enable-scroll-fade .page-section .section-subtitle,
+body.enable-scroll-fade .page-section .wedding-title,
+body.enable-scroll-fade .page-section .p3-top-heading {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.88s ease-out, transform 0.64s ease-out;
+}
+
+body.enable-scroll-fade .page-section .glass-card,
+body.enable-scroll-fade .page-section .photo-frame-wrapper,
+body.enable-scroll-fade .page-section .wedding-photo-wrapper,
+body.enable-scroll-fade .page-section .location-brief,
+body.enable-scroll-fade .page-section .accordion,
+body.enable-scroll-fade .page-section .date-badge,
+body.enable-scroll-fade .page-section .invitation-deco-img,
+body.enable-scroll-fade .page-section .venue-deco-img,
+body.enable-scroll-fade .page-section .dresscode-deco-img,
+body.enable-scroll-fade .page-section .faq-deco-img,
+body.enable-scroll-fade .page-section .p3-bottom-lead {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.88s ease-out 0.2s, transform 0.88s ease-out 0.2s;
 }
 
 /* Full opacity settled state when section comes into view */
-.page-section.in-view .section-title,
-.page-section.in-view .section-subtitle,
-.page-section.in-view .wedding-title,
-.page-section.in-view .p3-top-heading {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-.page-section.in-view .glass-card,
-.page-section.in-view .photo-frame-wrapper,
-.page-section.in-view .wedding-photo-wrapper,
-.page-section.in-view .location-brief,
-.page-section.in-view .accordion,
-.page-section.in-view .date-badge,
-.page-section.in-view .invitation-deco-img,
-.page-section.in-view .venue-deco-img,
-.page-section.in-view .dresscode-deco-img,
-.page-section.in-view .faq-deco-img,
-.page-section.in-view .p3-bottom-lead {
+body.enable-scroll-fade .page-section.in-view .section-title,
+body.enable-scroll-fade .page-section.in-view .section-subtitle,
+body.enable-scroll-fade .page-section.in-view .wedding-title,
+body.enable-scroll-fade .page-section.in-view .p3-top-heading,
+body.enable-scroll-fade .page-section.in-view .glass-card,
+body.enable-scroll-fade .page-section.in-view .photo-frame-wrapper,
+body.enable-scroll-fade .page-section.in-view .wedding-photo-wrapper,
+body.enable-scroll-fade .page-section.in-view .location-brief,
+body.enable-scroll-fade .page-section.in-view .accordion,
+body.enable-scroll-fade .page-section.in-view .date-badge,
+body.enable-scroll-fade .page-section.in-view .invitation-deco-img,
+body.enable-scroll-fade .page-section.in-view .venue-deco-img,
+body.enable-scroll-fade .page-section.in-view .dresscode-deco-img,
+body.enable-scroll-fade .page-section.in-view .faq-deco-img,
+body.enable-scroll-fade .page-section.in-view .p3-bottom-lead {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
@@ -879,14 +894,18 @@ select.light-input option[hidden] {
     position: absolute;
     pointer-events: none;
     z-index: 1;
-    opacity: 0;
-    transition: opacity 1.04s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: var(--deco-opacity, 0.45);
     user-select: none;
     filter: drop-shadow(0 4px 10px rgba(2, 132, 199, 0.12));
 }
 
+body.enable-scroll-fade .bg-deco {
+    opacity: 0;
+    transition: opacity 1.04s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Entry transition state when section becomes in-view */
-.page-section.in-view .bg-deco {
+body.enable-scroll-fade .page-section.in-view .bg-deco {
     opacity: var(--deco-opacity, 0.45);
 }
 

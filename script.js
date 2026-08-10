@@ -86,7 +86,7 @@ const translations = {
         p7_att_both: 'Ceremony & Reception',
         p7_att_reception: 'Reception Only',
         p7_att_no: 'Unable to Attend',
-        p7_lbl_guests: 'Total Number of Guests',
+        p7_lbl_guests: 'Total Number of Guests (including yourself)',
         p7_gst_0: '0',
         p7_gst_1: '1',
         p7_gst_2: '2',
@@ -183,7 +183,7 @@ const translations = {
 
         // Page 7
         p7_title: '出席回覆',
-        p7_subtitle: '誠摯邀請您與我們一同分享這份喜悅！',
+        p7_subtitle: '請於 9 月 15 日前填寫出席回覆。如有任何變動,歡迎隨時與我們聯繫。期待在婚禮上見到大家！',
         p7_alert: '感謝您的回覆！我們已收到您的 RSVP！',
         p7_lbl_name: '您的姓名',
         p7_ph_name: '請輸入您的姓名',
@@ -191,32 +191,32 @@ const translations = {
         p7_ph_rel: '請選擇與新人的關係',
         p7_rel_bride: '女方親友',
         p7_rel_groom: '男方親友',
-        p7_lbl_attendance: '出席意願',
-        p7_ph_attendance: '請選擇出席意願',
-        p7_att_both: '參加證婚儀式與婚宴',
-        p7_att_reception: '僅參加婚宴',
-        p7_att_no: '無法出席',
-        p7_lbl_guests: '出席總人數',
+        p7_lbl_attendance: '將如何與我們一同慶祝?',
+        p7_ph_attendance: '請選擇參與方式',
+        p7_att_both: '全程參與(證婚+晚宴)',
+        p7_att_reception: '僅參加晚宴',
+        p7_att_no: '無法出席, 獻上祝福',
+        p7_lbl_guests: '出席總人數 (包含您自己)',
         p7_gst_0: '0',
         p7_gst_1: '1',
         p7_gst_2: '2',
         p7_gst_3: '3',
         p7_gst_4: '4',
         p7_gst_5: '5',
-        p7_lbl_add_guests: '若您攜帶其他賓客，請在此填寫所有隨行賓客的姓名：',
-        p7_ph_add_guests: '例：王小明、李小美',
-        p7_lbl_physical_invite: '請問是否需要寄送紙本/實體喜帖？',
+        p7_lbl_add_guests: '若有攜伴，請填寫所有賓客姓名：',
+        p7_ph_add_guests: '請輸入所有賓客姓名',
+        p7_lbl_physical_invite: '請問是否需要寄送紙本喜帖？',
         p7_ph_physical_invite: '請選擇是否需要實體喜帖',
-        p7_phys_yes: '需要 (Yes)',
-        p7_phys_no: '不需要 (No)',
-        p7_lbl_mailing_addr: '若您選擇「需要」，請提供您的收件人姓名與郵寄地址：',
+        p7_phys_yes: '是',
+        p7_phys_no: '否',
+        p7_lbl_mailing_addr: '若您勾選需要紙本喜貼，請提供收件人姓名與郵寄地址：',
         p7_ph_mailing_addr: '收件人姓名、郵遞區號、詳細郵寄地址',
         p7_lbl_email: '電子郵件 / 聯絡電話',
         p7_ph_email: '請輸入電子郵件或聯絡電話',
         p7_lbl_dietary: '特殊飲食 / 兒童椅 / 其他需求',
-        p7_ph_dietary: '無（若有蛋奶素、素食、食物過敏或兒童椅需求請註明）',
+        p7_ph_dietary: '無（若有素食或兒童椅需求請註明）',
         p7_lbl_notes: '給新人的祝福或留言',
-        p7_ph_notes: '寫下您給 Pin-Chun & Thomas 的祝福小語',
+        p7_ph_notes: '寫下您給 卓 & Thomas 的祝福小語',
         p7_submit: '送出出席回覆',
         p7_validation_err: '請填寫所有必填欄位 (*)，包含姓名、關係與出席意願。'
     }
@@ -269,6 +269,23 @@ function setLanguage(lang) {
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize language
     setLanguage(currentLang);
+
+    // Browser detection for scroll fade-in animations (Chrome, Safari, Firefox, Brave)
+    async function detectFadeEffectsSupport() {
+        const ua = navigator.userAgent;
+        const isFirefox = /Firefox|Fxios/i.test(ua);
+        const isSafari = /Safari/i.test(ua) && !/Chrome|CriOS|Chromium|Edg|OPR/i.test(ua);
+        let isBrave = Boolean(navigator.brave);
+        if (!isBrave && navigator.brave && typeof navigator.brave.isBrave === 'function') {
+            try { isBrave = await navigator.brave.isBrave(); } catch (e) {}
+        }
+        const isChrome = /Chrome|CriOS/i.test(ua) && !/Edg|OPR/i.test(ua);
+
+        if (isFirefox || isSafari || isBrave || isChrome) {
+            document.body.classList.add('enable-scroll-fade');
+        }
+    }
+    detectFadeEffectsSupport();
 
     // Page section DOM references
     const sections = Array.from(document.querySelectorAll('.page-section'));
