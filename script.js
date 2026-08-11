@@ -319,6 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 5. RSVP Form Submission & Attendance Handler
     const rsvpForm = document.getElementById('rsvpForm');
     const rsvpAlert = document.getElementById('rsvpAlert');
+    const rsvpAlertBottom = document.getElementById('rsvpAlertBottom');
     const attendanceSelect = document.getElementById('attendance');
     let previousGuestCount = '1';
 
@@ -451,7 +452,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('[RSVP] Google Form submission request sent successfully!');
                 if (rsvpAlert) {
                     rsvpAlert.classList.remove('d-none');
-                    rsvpAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+                if (rsvpAlertBottom) {
+                    rsvpAlertBottom.classList.remove('d-none');
+                    rsvpAlertBottom.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
                 rsvpForm.reset();
                 previousGuestCount = '1';
@@ -460,6 +464,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('[RSVP] Error submitting RSVP:', err);
                 if (rsvpAlert) {
                     rsvpAlert.classList.remove('d-none');
+                }
+                if (rsvpAlertBottom) {
+                    rsvpAlertBottom.classList.remove('d-none');
                 }
             }).finally(() => {
                 if (submitBtn) submitBtn.disabled = false;
