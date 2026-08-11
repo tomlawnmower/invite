@@ -370,6 +370,13 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (rsvpForm) {
+        // Prevent pressing Enter inside input/select fields from submitting the RSVP form
+        rsvpForm.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+
         rsvpForm.addEventListener('submit', function (e) {
             e.preventDefault();
             console.log('[RSVP] Submit button clicked');
