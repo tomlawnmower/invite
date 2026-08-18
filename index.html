@@ -443,10 +443,6 @@
                     <p class="text-center text-muted mb-4 font-weight-bold">
                         <i class="fa-solid fa-paw text-lightblue mr-1"></i> <span data-i18n="p7_subtitle">Please let us know if you can attend!</span> <i class="fa-solid fa-paw text-lightblue ml-1"></i>
                     </p>
-                    
-                    <div id="rsvpAlert" class="alert alert-info d-none" role="alert">
-                        <i class="fa-solid fa-paw mr-2"></i> <span data-i18n="p7_alert">Thank you! Your RSVP has been received with joy!</span>
-                    </div>
 
                     <form id="rsvpForm" novalidate>
                         <!-- Full Name -->
@@ -532,15 +528,34 @@
                         <button type="submit" class="btn btn-sky-blue btn-block btn-lg mt-4 shadow">
                             <i class="fa-solid fa-paw mr-2"></i> <span data-i18n="p7_submit">送出出席回覆</span>
                         </button>
-
-                        <div id="rsvpAlertBottom" class="alert alert-info d-none mt-3 mb-0" role="alert">
-                            <i class="fa-solid fa-paw mr-2"></i> <span data-i18n="p7_alert">Thank you! Your RSVP has been received with joy!</span>
-                        </div>
                     </form>
                 </div>
             </div>
         </section>
 
+    </div>
+
+    <!-- RSVP Status Modal (Success & Error Confirmation Popup) -->
+    <div id="rsvpModal" class="rsvp-modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="rsvpModalTitle">
+        <div class="rsvp-modal-content shadow-lg text-center">
+            <button type="button" id="closeRsvpModalBtn" class="rsvp-modal-close-btn" aria-label="Close RSVP Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="rsvp-modal-body p-4 p-md-5">
+                <div id="rsvpModalIcon" class="rsvp-modal-icon mb-3">
+                    <i class="fa-solid fa-circle-check text-success"></i>
+                </div>
+                <h3 id="rsvpModalTitle" class="rsvp-modal-title text-navy font-weight-bold mb-3" data-i18n="rsvp_modal_success_title">
+                    感謝您的回覆！
+                </h3>
+                <p id="rsvpModalMessage" class="rsvp-modal-message text-dark mb-4" data-i18n="rsvp_modal_success_msg">
+                    感謝您的回覆！我們已收到您的出席資訊！
+                </p>
+                <button type="button" id="rsvpModalOkBtn" class="btn btn-sky-blue px-4 py-2 shadow-sm font-weight-bold">
+                    <span data-i18n="rsvp_modal_close">關閉</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Map Lightbox Modal -->

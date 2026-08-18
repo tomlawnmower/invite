@@ -108,7 +108,12 @@ const translations = {
         p7_lbl_notes: 'Message to the Couple',
         p7_ph_notes: 'Send your warm wishes or special requests to Pin-Chun & Thomas',
         p7_submit: 'Submit RSVP',
-        p7_validation_err: 'Please fill out all required fields (*) including Name, Relationship, and Attendance.'
+        p7_validation_err: 'Please fill out all required fields (*) including Name, Relationship, and Attendance.',
+        rsvp_modal_success_title: 'RSVP Received!',
+        rsvp_modal_success_msg: 'Thank you! Your RSVP has been received with joy!',
+        rsvp_modal_error_title: 'Submission Error',
+        rsvp_modal_error_msg: 'An error occurred while submitting your RSVP. Please try again or contact us directly.',
+        rsvp_modal_close: 'Close'
     },
     'zh-tw': {
         // Nav tooltips
@@ -166,8 +171,6 @@ const translations = {
         p4_cal_outlook: 'Outlook 行事曆',
         p4_cal_ics: '下載 .ICS 檔案',
 
-
-
         // Page 6
         p6_title: '常見問題',
         p6_q1: '婚禮當天怎麼穿？',
@@ -218,7 +221,12 @@ const translations = {
         p7_lbl_notes: '給新人的祝福或留言',
         p7_ph_notes: '寫下您給 卓 & Thomas 的祝福小語',
         p7_submit: '送出出席回覆',
-        p7_validation_err: '請填寫所有必填欄位 (*)，包含姓名、關係與出席意願。'
+        p7_validation_err: '請填寫所有必填欄位 (*)，包含姓名、關係與出席意願。',
+        rsvp_modal_success_title: '感謝您的回覆！',
+        rsvp_modal_success_msg: '我們已收到您的 RSVP！',
+        rsvp_modal_error_title: '送出失敗',
+        rsvp_modal_error_msg: '送出出席回覆時發生錯誤，請稍後再試或直接與我們聯繫。',
+        rsvp_modal_close: '關閉'
     }
 };
 
@@ -316,10 +324,78 @@ document.addEventListener('DOMContentLoaded', function () {
 
     sections.forEach(section => observer.observe(section));
 
-    // 5. RSVP Form Submission & Attendance Handler
+    // 5. RSVP Confirmation & Error Modal Popup Handler
+    const rsvpModal = document.getElementById('rsvpModal');
+    const closeRsvpModalBtn = document.getElementById('closeRsvpModalBtn');
+    const rsvpModalOkBtn = document.getElementById('rsvpModalOkBtn');
+    const rsvpModalIcon = document.getElementById('rsvpModalIcon');
+    const rsvpModalTitle = document.getElementById('rsvpModalTitle');
+    const rsvpModalMessage = document.getElementById('rsvpModalMessage');
+
+    function openRsvpModal(isSuccess, errorDetails = '') {
+        if (!rsvpModal) return;
+
+        const langDict = translations[currentLang] || translations['zh-tw'];
+
+        if (isSuccess) {
+            if (rsvpModalIcon) {
+                rsvpModalIcon.innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+            }
+            if (rsvpModalTitle) {
+                rsvpModalTitle.textContent = langDict.rsvp_modal_success_title || '感謝您的回覆！';
+            }
+            if (rsvpModalMessage) {
+                rsvpModalMessage.textContent = langDict.rsvp_modal_success_msg || langDict.p7_alert || '感謝您的回覆！我們已收到您的出席資訊！';
+            }
+        } else {
+            if (rsvpModalIcon) {
+                rsvpModalIcon.innerHTML = '<i class="fa-solid fa-circle-xmark text-danger"></i>';
+            }
+            if (rsvpModalTitle) {
+                rsvpModalTitle.textContent = langDict.rsvp_modal_error_title || '送出失敗';
+            }
+            let errMsg = langDict.rsvp_modal_error_msg || '送出出席回覆時發生錯誤。';
+            if (errorDetails) {
+                errMsg += `\n(${errorDetails})`;
+            }
+            if (rsvpModalMessage) {
+                rsvpModalMessage.textContent = errMsg;
+            }
+        }
+
+        rsvpModal.classList.add('open');
+        rsvpModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeRsvpModal() {
+        if (rsvpModal) {
+            rsvpModal.classList.remove('open');
+            rsvpModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (closeRsvpModalBtn) {
+        closeRsvpModalBtn.addEventListener('click', closeRsvpModal);
+    }
+    if (rsvpModalOkBtn) {
+        rsvpModalOkBtn.addEventListener('click', closeRsvpModal);
+    }
+    if (rsvpModal) {
+        rsvpModal.addEventListener('click', function (e) {
+            if (e.target === rsvpModal) {
+                closeRsvpModal();
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && rsvpModal.classList.contains('open')) {
+                closeRsvpModal();
+            }
+        });
+    }
+
     const rsvpForm = document.getElementById('rsvpForm');
-    const rsvpAlert = document.getElementById('rsvpAlert');
-    const rsvpAlertBottom = document.getElementById('rsvpAlertBottom');
     const attendanceSelect = document.getElementById('attendance');
     let previousGuestCount = '1';
 
@@ -450,24 +526,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: formData
             }).then(() => {
                 console.log('[RSVP] Google Form submission request sent successfully!');
-                if (rsvpAlert) {
-                    rsvpAlert.classList.remove('d-none');
-                }
-                if (rsvpAlertBottom) {
-                    rsvpAlertBottom.classList.remove('d-none');
-                    rsvpAlertBottom.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
+                openRsvpModal(true);
                 rsvpForm.reset();
                 previousGuestCount = '1';
                 updateAttendanceState();
             }).catch((err) => {
                 console.error('[RSVP] Error submitting RSVP:', err);
-                if (rsvpAlert) {
-                    rsvpAlert.classList.remove('d-none');
-                }
-                if (rsvpAlertBottom) {
-                    rsvpAlertBottom.classList.remove('d-none');
-                }
+                const humanError = (err && err.message) ? err.message : String(err);
+                openRsvpModal(false, humanError);
             }).finally(() => {
                 if (submitBtn) submitBtn.disabled = false;
             });

@@ -1559,5 +1559,94 @@ body.enable-scroll-fade #page7 .bg-deco {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.24);
 }
 
+/* ==========================================================================
+   RSVP Confirmation / Error Modal Popup
+   ========================================================================== */
+.rsvp-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.rsvp-modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.rsvp-modal-content {
+    position: relative;
+    background: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+    border: 2px solid var(--blue-soft);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rsvp-modal-backdrop.open .rsvp-modal-content {
+    transform: scale(1);
+}
+
+.rsvp-modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    background: rgba(148, 163, 184, 0.15);
+    color: var(--navy-dark);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.rsvp-modal-close-btn:hover {
+    background: var(--blue-primary);
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+.rsvp-modal-close-btn:focus {
+    outline: none;
+}
+
+.rsvp-modal-icon {
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+.rsvp-modal-title {
+    font-family: 'Playfair Display', 'Noto Serif TC', serif;
+    font-size: 1.5rem;
+}
+
+.rsvp-modal-message {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+
 
 
